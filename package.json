@@ -1,0 +1,41 @@
+{
+  "name": "project-best08",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "https://shegadev.github.io/project-best08",
+  "scripts": {
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html --public-url /project-best08/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SheGaDev/project-best08.git"
+  },
+  "keywords": [
+    "parcel",
+    "html",
+    "scss"
+  ],
+  "author": "SheGaDev",
+  "license": "ISC",
+  "dependencies": {
+    "@glidejs/glide": "^3.6.0",
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "axios": "^1.4.0",
+    "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.6",
+    "readmore-js": "^2.2.1",
+    "slim-select": "^2.5.0",
+    "swiper": "^9.4.1",
+    "tui-pagination": "^3.4.1"
+  },
+  "devDependencies": {
+    "@parcel/resolver-glob": "^2.9.2",
+    "@parcel/transformer-sass": "^2.6.0",
+    "buffer": "^6.0.3",
+    "parcel": "^2.6.0",
+    "parcel-reporter-clean-dist": "^1.0.4",
+    "posthtml-include": "^1.7.4"
+  }
+}

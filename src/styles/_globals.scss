@@ -32,9 +32,16 @@ img {
     height: auto;
 }
 
-.two {
-    font-weight: 500;
-}
-.three {
-    font-weight: 600;
+.container {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-rigth: 32px;
+  }
+  @media screen and (min-width: 1200px) {
+    padding-left: 100px;
+    padding-rigth: 100px;
+  }
 }

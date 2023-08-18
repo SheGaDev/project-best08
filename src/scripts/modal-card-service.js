@@ -11,7 +11,7 @@ const params = {
 async function getRecipeById(id) {
   params.recipeID = id;
   const { data } = await axios.get(BASE_URL, { params });
-  //   console.log(`page: ${page}`);
+  //   console.log({ data });
   return data;
 }
 

@@ -19,10 +19,11 @@ function setCurrentPage(elem) {
         openMenuBtn.getAttribute('aria-expanded') === 'true' || false;
       openMenuBtn.setAttribute('aria-expanded', !isMenuOpen);
       mobileMenu.classList.toggle('is-open');
+      document.body.classList.toggle('no-scroll');
   
-      const scrollLockMethod = !isMenuOpen
-        ? 'disableBodyScroll'
-        : 'enableBodyScroll';
+    //   const scrollLockMethod = !isMenuOpen
+    //     ? 'disableBodyScroll'
+    //     : 'enableBodyScroll';
     //   bodyScrollLock[scrollLockMethod](document.body);
     };
   

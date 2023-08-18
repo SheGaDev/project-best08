@@ -82,7 +82,7 @@
   }
 }
 .modal-card-name {
-  color: rgba(5, 5, 5, 1);
+  color: $primery-text-color;
   //   align-items: flex-end;
   font-style: normal;
   font-weight: 600;
@@ -105,6 +105,13 @@
   @media screen and (min-width: 768px) {
     display: flex;
   }
+}
+
+.item-tags-style {
+  padding: 1px 8px;
+  border-radius: 5px;
+  border-color: rgba(5, 5, 5, 0.2);
+  margin-right: 4px;
 }
 
 .close-button {

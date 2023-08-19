@@ -1,1 +1,2 @@
-// import './recipes-render';
+import './recipes-render';
+import '@api/index.js';

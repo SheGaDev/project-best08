@@ -1,9 +1,9 @@
 import { API } from '.';
-import { createMarkup } from '../utils/createMarkup';
+import { createLi } from '../utils/createMarkup';
 import { refs } from './refs';
 
 export async function categoriesRendering() {
   const data = await API.fetchCategories();
-  const markup = createMarkup(data, 'name');
+  const markup = createLi(data);
   refs.categoriesEl.innerHTML = markup;
 }

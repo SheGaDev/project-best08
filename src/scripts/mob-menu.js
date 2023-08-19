@@ -1,11 +1,3 @@
-// const bodyScrollLock = require('body-scroll-lock');
-const homeEl = document.querySelector('#home-link');
-const favoriteEl = document.querySelector('#favorites-link');
-
-function setCurrentPage(elem) {
-    elem.classList.add("current");
-}
-
 /*.............................MOBILE MENU.......................*/
 
 
@@ -20,11 +12,6 @@ function setCurrentPage(elem) {
       openMenuBtn.setAttribute('aria-expanded', !isMenuOpen);
       mobileMenu.classList.toggle('is-open');
       document.body.classList.toggle('no-scroll');
-  
-    //   const scrollLockMethod = !isMenuOpen
-    //     ? 'disableBodyScroll'
-    //     : 'enableBodyScroll';
-    //   bodyScrollLock[scrollLockMethod](document.body);
     };
   
     openMenuBtn.addEventListener('click', toggleMenu);
@@ -35,6 +22,5 @@ function setCurrentPage(elem) {
       if (!e.matches) return;
       mobileMenu.classList.remove('is-open');
       openMenuBtn.setAttribute('aria-expanded', false);
-    //   bodyScrollLock.enableBodyScroll(document.body);
     });
   })();

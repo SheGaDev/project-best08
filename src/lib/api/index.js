@@ -1,2 +1,2 @@
-import TastyTreatsAPI from "@api/TastyTreats";
+import TastyTreatsAPI from '@api/TastyTreats';
 export const API = new TastyTreatsAPI();

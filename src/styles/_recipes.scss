@@ -1,0 +1,132 @@
+@use './globals';
+
+.recipe-cards_wrapper {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 16px;
+}
+
+/* //////////// */
+
+.recipe-card {
+  position: relative;
+  width: 250px;
+  height: 287px;
+  padding: 16px;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  background-size: cover;
+  background-position: center center;
+}
+
+.recipe-card h2 {
+  margin-bottom: 8px;
+
+  color: $primery-background-color;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.28; /* 128.571% */
+  text-transform: uppercase;
+  // letter-spacing: 0.03em;
+}
+
+.recipe-card p {
+  // height: 32px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: $primery-background-color;
+
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: 0.03em;
+
+  margin-bottom: 16px;
+}
+
+.favourite-heart {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  opacity: 0.5;
+  fill: none;
+  transition: opacity $typical-transition, fill $typical-transition;
+
+  &:hover {
+    opacity: 1;
+    fill: $primery-background-color;
+  }
+}
+
+.card-bottom__block-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-bottom__rating-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating-number {
+  color: $primery-background-color;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  // line-height: 1.28;
+}
+
+.recipe-card_rating-stars-list {
+  list-style: none;
+  display: flex;
+}
+
+.star {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: rgba(248, 248, 248, 0.2);
+
+  width: 18px;
+  height: 18px;
+}
+
+.star.filled {
+  fill: $stars-color;
+  opacity: 1;
+}
+
+.see-recipe_button {
+  display: flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+  background: $accent-color;
+  border: none;
+
+  color: $primery-background-color;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transition: color $typical-transition;
+
+  &:hover,
+  &:focus {
+    color: $primery-text-color;
+  }
+}

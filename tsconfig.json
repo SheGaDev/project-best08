@@ -12,8 +12,8 @@
             "@utils/*": [
                 "./src/lib/utils/*"
             ],
-            "@api": [
-                "./src/lib/api/index.js"
+            "@api/*": [
+                "./src/lib/api/*"
             ],
             "@components/*": [
                 "./src/components/*"

@@ -1,0 +1,81 @@
+p{margin: 0;}
+
+.hero{
+    display: flex;
+    flex-direction: row;
+}
+
+.swiper{
+    --swiper-pagination-color: gray;
+
+    width: 868px;
+    
+    
+  }
+
+.hero_section_slider{
+    display: flex;
+    flex-direction: row;
+
+}
+.swiper-slide{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.slider_card_cheef {
+    position: relative;
+    display: flex;
+    width: 136px;
+    height: 440px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.slider_card_dish_introduction{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 440px;
+    background-color: black;
+    border-radius: 15px;
+  
+    overflow: hidden;
+    
+}
+
+.slider_card_dish_view{
+   position: relative;
+    display: flex;
+    width: 350px;
+    height: 440px;
+    background-color: black;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.slider_card_cheef_photo{
+    position: absolute;
+width: 412px;
+left: -140px;
+top: -20px;
+}
+
+.slider_card_dish_introduction_photo{
+   
+    width: 260px;
+    margin-bottom: 64px;
+    
+}
+
+.slider_card_dish_view_photo{
+    position: absolute;
+    width:800px;
+right: -300px;
+bottom: -180px;
+}

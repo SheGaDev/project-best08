@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "6462a8f74c3d0ddd28897fbc",
+    "title": "Irish stew",
+    "description": "A traditional Irish dish made with lamb, potatoes, carrots, onions, and herbs, cooked in a broth or gravy.",
+    "preview": "https://www.themealdb.com/images/media/meals/sxxpst1468569714.jpg",
+    "popularity": 602.88
+  },
+  {
+    "_id": "6462a8f74c3d0ddd28898040",
+    "title": "Burek",
+    "description": "Burek is a traditional Balkan pastry made with phyllo dough and a savory filling, usually of meat, cheese, or vegetables. It's a popular street food in the region and can be enjoyed as a snack or a meal.",
+    "preview": "https://www.themealdb.com/images/media/meals/tkxquw1628771028.jpg",
+    "popularity": 552.16
+  },
+  {
+    "_id": "6462a8f74c3d0ddd28897fb8",
+    "title": "Mediterranean Pasta Salad",
+    "description": "A salad made with pasta, vegetables (such as tomatoes, cucumbers, and olives), feta cheese, and a dressing made with olive oil and lemon juice.",
+    "preview": "https://www.themealdb.com/images/media/meals/wvqpwt1468339226.jpg",
+    "popularity": 529.2
+  },
+  {
+    "_id": "6462a8f74c3d0ddd28898046",
+    "title": "Fish fofos",
+    "description": "Fish fofos are a popular Portuguese dish of fish patties made with mashed potatoes, cod or hake, and herbs, fried until golden brown and crispy on the outside, soft and moist on the inside.",
+    "preview": "https://www.themealdb.com/images/media/meals/a15wsa1614349126.jpg",
+    "popularity": 499
+  }
+]

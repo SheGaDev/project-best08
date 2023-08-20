@@ -1,0 +1,17 @@
+.to_top {
+    position: fixed;
+    bottom: 40px;
+    right: 25px;
+    z-index: 1001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 30px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 1.17;
+    font-weight: 500;
+  
+    border-radius: 60px;
+}

@@ -1,1 +1,3 @@
-import '../lib/api/index.js';
+import './recipes-render';
+import '@api/index.js';
+import './mob-menu';

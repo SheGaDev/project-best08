@@ -4,3 +4,4 @@ import { popularRendering } from './popular';
 export const API = new TastyTreatsAPI();
 categoriesRendering();
 popularRendering();
+

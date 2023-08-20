@@ -1,2 +1,2 @@
-// import './modal-card-service';
-// import './modal-card';
+import './modal-card-service';
+import './modal-card';

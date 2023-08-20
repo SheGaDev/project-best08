@@ -1,17 +1,15 @@
 // recipe click callback
-// import axios from 'axios';
+import axios from 'axios';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const BASE_URL = 'https://tasty-treats-backend.p.goit.global/api/recipes/';
 
-const params = {
-  recipeID: null,
-};
-
 async function getRecipeById(id) {
-  params.recipeID = id;
-  const { data } = await axios.get(BASE_URL, { params });
-  //   console.log({ data });
-  return data;
+  try {
+    const { data } = await axios.get(`${BASE_URL}${id}`);
+    return data;
+  } catch (error) {
+    Notify.failure('Sorry...Please try again!');
+  }
 }
-
 export { getRecipeById };

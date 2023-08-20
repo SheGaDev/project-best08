@@ -1,34 +1,18 @@
 {
-    "compilerOptions": {
-        "allowJs": true,
-        "outDir": "./dist",
-        "paths": {
-            "@/*": [
-                "./src/*"
-            ],
-            "@scripts/*": [
-                "./src/scripts/*"
-            ],
-            "@utils/*": [
-                "./src/lib/utils/*"
-            ],
-            "@components/*": [
-                "./src/components/*"
-            ],
-            "@data/*": [
-                "./public/data/*"
-            ],
-            "@fonts/*": [
-                "./public/fonts/*"
-            ],
-            "@images/*": [
-                "./src/images/*"
-            ],
-        }
-    },
-    "include": [
-        "src",
-        "public"
-    ],
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "./dist",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@scripts/*": ["./src/scripts/*"],
+      "@utils/*": ["./src/lib/utils/*"],
+      "@api/*": ["./src/lib/api/*"],
+      "@components/*": ["./src/components/*"],
+      "@data/*": ["./public/data/*"],
+      "@fonts/*": ["./public/fonts/*"],
+      "@images/*": ["./src/images/*"]
+    }
+  },
+  "include": ["src", "public"],
+  "exclude": ["node_modules"]
 }

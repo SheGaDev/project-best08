@@ -1,0 +1,105 @@
+@use './globals';
+
+.filters-cards__wrapper {
+  width: 782px;
+}
+
+.filters {
+  display: flex;
+  margin-bottom: 14px;
+  gap: 16px;
+}
+
+.search-input {
+  position: relative;
+
+  display: flex;
+  width: 278px;
+  padding: 14px 122px 14px 18px;
+  align-items: flex-start;
+  gap: 32px;
+
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+}
+
+// .search-input svg {
+//   position: absolute;
+//   top: 50%;
+//   left: 16px;
+//   transform: translate(0, -50%);
+//   width: 18px;
+//   height: 24px;
+// }
+
+.filter__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.filters p {
+  color: rgba(5, 5, 5, 0.5);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.28;
+  margin-bottom: 8px;
+}
+
+// selects
+.time-select {
+  width: 125px;
+  padding: 14px 18px;
+
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+}
+
+.area-select {
+  width: 141px;
+  padding: 14px 18px;
+
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+}
+
+.ingredients-select {
+  width: 188px;
+  padding: 14px 18px;
+
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+}
+.ss-content.ss-open-below {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.ss-main.ss-open-below {
+  border-radius: 15px;
+}
+
+.reset-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  margin-bottom: 14px;
+  margin-left: auto;
+
+  color: rgba(5, 5, 5, 0.5);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.33;
+
+  border: none;
+  background-color: transparent;
+}
+
+.reset-button span {
+  display: flex;
+}

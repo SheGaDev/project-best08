@@ -28,6 +28,12 @@
     }
 }
 
+@media screen and (max-width: 767px) {
+    .hero-favorites-section.unvisible {
+        opacity: 0;
+    }
+}
+
 @media screen and (min-width: 768px) {
     .hero-favorites-container {
         width: 768px;

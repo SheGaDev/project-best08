@@ -58,10 +58,6 @@
     color: globals.$accent-color;
 }
 
-.current {
-    color: globals.$accent-color;
-}
-
 .btns-wrap {
     display: flex;
     align-items: center;
@@ -223,8 +219,8 @@
         display: block;
         font-family: Inter;
         font-size: 12px;
-        font-weight: 500;
-        color: globals.$secondary-text-color;
+        font-weight: 400;
+        color: $primery-background-color;
       }
 
       .toggle-switch-mobile {
@@ -264,6 +260,14 @@
     .btns-wrap {
         gap: 24px;
     }
+}
+
+.current {
+  color: globals.$accent-color;
+  @media screen and (max-width: 768px){
+    font-weight: 500;
+    color:globals.$secondary-text-color;
+  }
 }
 
 

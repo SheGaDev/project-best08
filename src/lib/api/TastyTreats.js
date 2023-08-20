@@ -16,7 +16,7 @@ export default class TastyTreatsAPI {
         for (const [key, value] of Object.entries(data)) {
             query += `&${key}=${value}`;
         }
-        return query.join('&');
+        return query;
     }
     async fetchRecipes(data = {}) {
         const response = await axios(`recipes?${this.requestJoin(data)}`);

@@ -1,0 +1,22 @@
+@use "./globals";
+
+.order-now.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0000004d;
+}
+
+.order-now-box {
+  position: absolute;
+  background-color: globals.$secondary-text-color;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  width: 440px;
+  height: 632px;
+  border-radius: 15px;
+}

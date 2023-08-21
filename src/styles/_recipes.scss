@@ -2,18 +2,19 @@
 
 .recipe-cards_wrapper {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 16px;
-}
+  align-items: center;
 
-/* //////////// */
+  @media screen and (max-width: 767) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
 
 .recipe-card {
   position: relative;
-  width: 250px;
-  height: 287px;
+
   padding: 16px;
   border-radius: 15px;
 
@@ -23,6 +24,27 @@
 
   background-size: cover;
   background-position: center center;
+
+  @media screen and (max-width: 767px) {
+    width: 335px;
+    height: 335px;
+  }
+  @media screen and (max-width: 359px) {
+    width: 287px;
+    height: 287px;
+  }
+
+  //tablet
+  @media screen and (min-width: 768px) {
+    width: 240px;
+    height: 264px;
+  }
+
+  //desktop
+  @media screen and (min-width: 1200px) {
+    width: 250px;
+    height: 287px;
+  }
 }
 
 .recipe-card h2 {
@@ -32,14 +54,12 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 1.28; /* 128.571% */
+  line-height: 1.28;
   text-transform: uppercase;
   // letter-spacing: 0.03em;
 }
 
 .recipe-card p {
-  // height: 32px;
-
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -78,6 +98,10 @@
   display: flex;
   align-items: center;
   gap: 4px;
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    gap: 2px;
+  }
 }
 
 .rating-number {
@@ -101,6 +125,11 @@
 
   width: 18px;
   height: 18px;
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .star.filled {
@@ -110,7 +139,7 @@
 
 .see-recipe_button {
   display: flex;
-  padding: 8px 16px;
+  padding: 8px 14px;
   justify-content: center;
   align-items: center;
 
@@ -128,5 +157,24 @@
   &:hover,
   &:focus {
     color: $primery-text-color;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding: 8px 16px;
+  }
+}
+
+.main-section {
+  display: flex;
+  gap: 64px;
+
+  @media screen and (max-width: 767) {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  //table
+  @media screen and (min-width: 768) and (max-width: 1199) {
+    gap: 32px;
   }
 }

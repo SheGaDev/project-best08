@@ -8,4 +8,4 @@ const mainPlaceholderInstance = new HEROPlaceholderAPI()
 mainPlaceholderInstance.getTreats().then( data => card.insertAdjacentHTML('beforeend', createMarkup(data))
     )
     .catch(console.warn);
-
+    initSwiper();

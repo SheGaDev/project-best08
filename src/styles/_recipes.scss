@@ -3,12 +3,16 @@
 .recipe-cards_wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 24px;
   align-items: center;
+  margin: auto;
 
-  @media screen and (max-width: 767) {
-    flex-direction: column;
-    gap: 24px;
+  @media screen and (min-width: 768) {
+    gap: 16px;
+  }
+
+  @media screen and (min-width: 1280) {
+    width: 782px;
   }
 }
 
@@ -29,10 +33,6 @@
     width: 335px;
     height: 335px;
   }
-  @media screen and (max-width: 359px) {
-    width: 287px;
-    height: 287px;
-  }
 
   //tablet
   @media screen and (min-width: 768px) {
@@ -41,7 +41,7 @@
   }
 
   //desktop
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     width: 250px;
     height: 287px;
   }
@@ -79,7 +79,7 @@
   top: 16px;
   right: 16px;
   opacity: 0.5;
-  fill: none;
+  fill: transparent;
   transition: opacity $typical-transition, fill $typical-transition;
 
   &:hover {
@@ -99,7 +99,7 @@
   align-items: center;
   gap: 4px;
 
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
     gap: 2px;
   }
 }
@@ -126,7 +126,7 @@
   width: 18px;
   height: 18px;
 
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
+  @media screen and (min-width: 768px) and (max-width: 1280) {
     width: 16px;
     height: 16px;
   }
@@ -159,22 +159,24 @@
     color: $primery-text-color;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280) {
     padding: 8px 16px;
   }
 }
 
 .main-section {
   display: flex;
-  gap: 64px;
+  gap: 40px;
+  flex-direction: column;
 
-  @media screen and (max-width: 767) {
-    flex-direction: column;
-    gap: 40px;
+  //tablet
+  @media screen and (min-width: 768) {
+    gap: 32px;
+    flex-direction: row;
   }
 
-  //table
-  @media screen and (min-width: 768) and (max-width: 1199) {
-    gap: 32px;
+  //desktop
+  @media screen and (min-width: 1280) {
+    gap: 64px;
   }
 }

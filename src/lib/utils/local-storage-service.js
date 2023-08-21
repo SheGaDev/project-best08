@@ -54,7 +54,7 @@ function getFavoriteItems({ page = 1, category = "All" }) {
         page,
         totalPage: Math.ceil(filtered.length / perPage),
         categories,
-        results: filtered
+        results: filtered.slice((page - 1) * perPage, (page - 1) * perPage + perPage)
     }
     return data;
 }

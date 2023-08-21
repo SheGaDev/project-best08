@@ -4,11 +4,13 @@
 p{margin-right: 0;}
 .swiper{
     --swiper-pagination-color: gray;
+    --swiper-pagination-bullet-size: 10px;
 
-    width: 868px;
-    height: 500px;
-    
+    min-width:  100%;
+    height: 468px; 
+
   }
+  
 .hero{
     display: flex;
     flex-direction: row;
@@ -72,6 +74,7 @@ background-color: $accent-color;
     display: flex;
     flex-direction: row;
     gap: 16px;
+    
 }
 
 .slider_card_cheef {
@@ -157,18 +160,25 @@ opacity: 0.2;}
  
 @media screen and (max-width: 767px){
     .container{
-        width: 320px;
+        width: 767px;
     }
+
+
     .hero{
         
         display: flex;
         flex-direction: column;
     }
+    .swiper{
+        width: 469px;
+        height: 302px; 
+      }
 
     .hero_section_content{
         width: 335px;
         }
         .hero_title_style{
+            --swiper-pagination-bullet-size: 8px;
             font-weight: 400;
             font-size: 26px;
         }
@@ -193,7 +203,9 @@ opacity: 0.2;}
            
         }
 
-.swiper-slide{
+.swiper-slide{  
+        width: 496px;
+        height: 302px;
     gap:8px ;
 }
 
@@ -258,6 +270,12 @@ opacity: 0.2;}
     .container{
         max-width: 768px;
     }
+    .swiper{
+            
+        width: 868px;
+        height: 500px;
+        
+      }
 
     .hero{
         
@@ -344,7 +362,9 @@ opacity: 0.2;}
 
 }
 @media screen and (min-width: 1200px){
-    
+    .container{
+        width: 1200px;
+      }
     .hero{
         flex-direction: row;
         padding-top: 50px;
@@ -374,8 +394,7 @@ opacity: 0.2;}
         }
         
         .swiper{
-            --swiper-pagination-color: gray;
-        
+            
             width: 868px;
             height: 500px;
             

@@ -1,6 +1,7 @@
 import { HEROPlaceholderAPI } from './hero-placeholder-api.js';
 
 import { createMarkup } from './hero-markup.js';
+import { initSwiper } from './swiper-inicialisation.js';
 
 const card = document.querySelector('.hero_section_slider');
 const mainPlaceholderInstance = new HEROPlaceholderAPI()

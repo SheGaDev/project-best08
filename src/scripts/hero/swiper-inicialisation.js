@@ -1,75 +1,39 @@
 
 import Swiper from 'swiper';
-import Swiper, { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper';
+import  { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
 import 'swiper/swiper.min.css';
-import 'swiper/modules/autoplay/autoplay.min.css';
-Swiper.use([Navigation, Pagination, Scrollbar, Autoplay]);
+
+// Swiper.use([Navigation, Pagination, Scrollbar, Autoplay]);
 
 export const initSwiper = () => {
-    // setTimeout(() => {
     const swiper = new Swiper('.swiper', {
+     modules: [Navigation, Pagination, Scrollbar, Autoplay],
         autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
+            delay: 4000,
+            disableOnInteraction: true,
+            stopOnLastSlide:false,
+           
+        }, 
+
+        slidesPerView: 1,
+      spaceBetween: 10,
+      loop: false,
+        pagination:{
+el:'.swiper-pagination',
+clickable:true,
+
+
         },
+
         slidesPerView: 1,
         spaceBetween: 10,
         direction: 'horizontal',
-        loop: true,
+        loop: false,
         observer: true,
         simulateTouch: false,
         speed: 600
     });
-    // }, 0);
+    
 }
 
 
-import Swiper, { Navigation, Pagination } from 'swiper';
-
-Swiper.use([Navigation, Pagination]);
-
-
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-
-// init Swiper:
-const swiper = new Swiper('.swiper-wrapper', {
- 
-  direction: 'vertical',
-  pagination: {
-      el: '.swiper-pagination',
-    },
-    speed:500,
-    autoplay: {
-      pauseOnMouseEnter: false,
-    disableOnInteraction: false,
-     delay: 2000,
-    },
-    
-});
-
-
-
-
-
-
-
-
-// // new Swiper('.swiper-wrapper', {
- 
-// //     slidesPerView:1,
-// // spaceBetween: 10,
-// // loop: true,
-
-// // pagination: {
-// //   el: '.swiper-pagination',
-// // },
-// // speed:500,
-// // autoplay: {
-// //   pauseOnMouseEnter: false,
-// // disableOnInteraction: false,
-// //  delay: 2000,
-// // },
-
-// // });

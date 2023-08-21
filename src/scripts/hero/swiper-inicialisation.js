@@ -9,7 +9,7 @@ export const initSwiper = () => {
     const swiper = new Swiper('.swiper', {
      modules: [Navigation, Pagination, Scrollbar, Autoplay],
         autoplay: {
-            delay: 4000,
+            delay: 3000,
             disableOnInteraction: true,
             stopOnLastSlide:false,
            
@@ -31,7 +31,7 @@ clickable:true,
         loop: false,
         observer: true,
         simulateTouch: false,
-        speed: 600
+        speed: 800
     });
     
 }

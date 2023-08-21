@@ -16,7 +16,6 @@
 .filters {
   display: flex;
   gap: 16px;
-  // justify-content: space-between;
 
   & .search-filter__wrapper {
     position: relative;
@@ -56,7 +55,7 @@
   padding-bottom: 14px;
   padding-left: 48px;
 
-  color: rgb(5, 5, 5);
+  color: $primery-text-color;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -79,9 +78,16 @@
     }
   }
 
-  // &:focus {
-  //   color: rgba(5, 5, 5);
-  // }
+  &:focus-visible {
+    border-color: transparent;
+  }
+
+  &:hover,
+  &:focus {
+    + .search-input-button .search-icon {
+      fill: $accent-color;
+    }
+  }
 
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -116,6 +122,8 @@
 
     width: 18px;
     height: 18px;
+
+    transition: fill $typical-transition;
   }
 }
 
@@ -151,6 +159,14 @@
   }
 }
 
+.ss-main {
+  display: flex;
+  align-items: center;
+}
+.ss-single {
+  margin: 0;
+}
+
 // selects
 .time-select {
   width: 125px;
@@ -160,12 +176,19 @@
   border-radius: 15px;
   border: 1px solid rgba(5, 5, 5, 0.2);
 
-  color: rgba(5, 5, 5, 0.5);
-  font-family: Inter;
+  color: $primery-text-color;
+
+  &.ss-main .ss-values .ss-placeholder {
+    color: rgba(5, 5, 5, 0.5);
+    padding: 3 0;
+  }
+
+  // font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.28px;
+  transition: color $typical-transition;
 
   &.ss-content {
     height: 128px;
@@ -196,12 +219,23 @@
   border-radius: 15px;
   border: 1px solid rgba(5, 5, 5, 0.2);
 
-  color: rgba(5, 5, 5, 0.5);
-  font-family: Inter;
+  color: $primery-text-color;
+
+  &.ss-main .ss-values .ss-placeholder {
+    color: rgba(5, 5, 5, 0.5);
+    padding: 3 0;
+  }
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.28px;
+  transition: color $typical-transition;
+
+  &:hover,
+  &:focus {
+    color: $primery-text-color;
+  }
 
   @media screen and (max-width: 767px) {
     width: 160px;
@@ -224,12 +258,24 @@
   border-radius: 15px;
   border: 1px solid rgba(5, 5, 5, 0.2);
 
-  color: rgba(5, 5, 5, 0.5);
+  color: $primery-text-color;
+
+  &.ss-main .ss-values .ss-placeholder {
+    color: rgba(5, 5, 5, 0.5);
+    padding: 3 0;
+  }
+
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 1.28px;
+  transition: color $typical-transition;
+
+  &:hover,
+  &:focus {
+    color: $primery-text-color;
+  }
 
   //tablet
   @media screen and (min-width: 768px) {
@@ -241,7 +287,6 @@
 .filters-and-button__wrapper {
   display: flex;
   flex-direction: column;
-  // justify-content: flex-end;
 
   gap: 14px;
   margin-bottom: 14px;
@@ -268,8 +313,10 @@
   border: none;
   background-color: transparent;
 
+  transition: color $typical-transition;
+
   &:hover {
-    color: black;
+    color: $primery-text-color;
   }
 }
 
@@ -313,19 +360,15 @@
   font-weight: 500;
   line-height: 1.25;
 
-  transition: color 500ms ease-in-out;
+  transition: color $typical-transition;
 }
 
 .ss-content .ss-list .ss-option:hover,
 .ss-content .ss-list .ss-option.ss-highlighted,
 .ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
-  color: #050505;
+  color: $primery-text-color;
   background-color: transparent;
 }
-
-// .ss-content .ss-list .ss-option:hover {
-//   background-color: transparent;
-// }
 
 .ss-content {
   height: 188px;
@@ -335,5 +378,15 @@
   }
 }
 
-@media screen and (min-width: 0) {
+.ss-list {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background: rgba(5, 5, 5, 0.18);
+  }
 }

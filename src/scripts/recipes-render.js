@@ -114,13 +114,29 @@ import 'slim-select/dist/slimselect.css';
 document.addEventListener('DOMContentLoaded', function () {
   new SlimSelect({
     select: '#time',
+    settings: {
+      placeholderText: '0 min',
+    },
   });
 
   new SlimSelect({
     select: '#area',
+    settings: {
+      placeholderText: 'Region',
+    },
   });
 
   new SlimSelect({
     select: '#ingredients',
+    settings: {
+      placeholderText: 'Product',
+    },
   });
 });
+
+// const timeSelect = document.querySelector('#time');
+// console.log(timeSelect);
+
+// timeSelect.addEventListener('change', event => {
+//   console.log(event.target.value);
+// });

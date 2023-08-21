@@ -1,274 +1,294 @@
-@use "./globals";
+@use './globals';
 
 .no-scroll {
-    overflow: hidden;
-  }
+  overflow: hidden;
+}
 
 .header-container {
-    margin-top: 20px;
-    // margin-bottom: 500px;
+  margin-top: 20px;
 }
 
 .header-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header-item {
-    margin-right: 16px;
+  margin-right: 16px;
 }
 
 .header-link {
-    display: block;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
-    font-weight: 500;
-    font-size: 12px;
-    line-height: normal;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    color: $primery-text-color;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: normal;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: $primery-text-color;
+  transition: color globals.$typical-transition;
 }
 
 .header-link:hover,
 .header-link:focus {
-    color: globals.$accent-color;
+  color: globals.$accent-color;
 }
 
-
 .logo {
-        font-family: Inter;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 1.125;
-        letter-spacing: -0.72px;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.125;
+  letter-spacing: -0.72px;
 
-        color: globals.$accent-color;
+  color: globals.$accent-color;
 }
 
 .header-logo {
-    color: globals.$primery-text-color;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: globals.$primery-text-color;
+  transition: color globals.$typical-transition;
 }
 
 .header-logo:hover,
 .header-logo:focus {
-    color: globals.$accent-color;
+  color: globals.$accent-color;
 }
 
 .btns-wrap {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.buy-btn{
-    border: none;
-    background: none;
-    padding: 0;
-    fill: transparent;
-    stroke: globals.$primery-text-color;
-    width: 24px;
-    height: 24px;
-    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+.buy-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  fill: transparent;
+  stroke: globals.$primery-text-color;
+  width: 24px;
+  height: 24px;
+  transition: stroke globals.$typical-transition;
 }
 
 .buy-btn:hover,
 .buy-btn:focus {
-    stroke: globals.$accent-color;
+  stroke: globals.$accent-color;
 }
 
 /* ...............TOGGLE BTN......... */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 46px;
-    height: 20px;
-  }
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 20px;
+}
 
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #CECDCD;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 1px;
-    bottom: 1px;
-    background-color: globals.$primery-background-color;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: globals.$accent-color;
-  }
-  
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-  
- 
-  .slider.round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cecdcd;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
 
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  background-color: globals.$primery-background-color;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: globals.$accent-color;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*.............................MOBILE MENU.......................*/
+.menu-open-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  stroke: globals.$primery-text-color;
+  transition: stroke globals.$typical-transition;
+}
+.menu-open-btn:hover,
+.menu-open-btn:focus {
+  stroke: globals.$accent-color;
+}
+
+.mobile-menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  background-color: rgba(156, 181, 55, 0.341);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity globals.$typical-transition, visibility globals.$typical-transition;
+}
+
+.mobile-menu-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: initial;
+}
+.mobile-menu-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: initial;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+
+  height: 100vh;
+  width: 200px;
+
+  overflow: auto;
+  background-color: globals.$accent-color;
+
+  transform: translateX(100%);
+  transition: transform globals.$typical-transition;
+}
+
+.mobile-menu-backdrop.is-open .mobile-menu {
+  transform: translateX(0);
+}
+
+.menu-close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  stroke: globals.$primery-background-color;
+  border: none;
+  background: none;
+}
+.mobile-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 200px;
+}
+
+.mobile-menu-link {
+  display: block;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  color: $primery-background-color;
+}
+
+.toggle-switch-mobile {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
 
 @media screen and (max-width: 767px) {
-    .container {
+  .container {
     max-width: 335px;
     margin-left: auto;
     margin-right: auto;
-    }
-    .header-list{
-        display: none;
-    }
-    .toggle-switch {
-        display: none;
-    }
-    .slider {
-        border: 1px solid #CECDCD;
-    }
-    /*.............................MOBILE MENU.......................*/
-.menu-open-btn {
-    background-color: transparent;
-    border:none;
-    padding: 0;
-    width: 32px;
-    height: 32px;
-    stroke: globals.$primery-text-color;
-    transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    } 
-    .menu-open-btn:hover,
-    .menu-open-btn:focus {
-        stroke: globals.$accent-color;
-    }  
-    
-    .mobile-menu {
-        display: flex;
-        flex-direction: column;
-      
-        position: absolute;
-        top: -101vh;
-        left: 50%;
-      
-        z-index:1;
-      
-        max-width: 335px;
-        height: 100vh;
-        width: 75%;
-    
-        overflow-y: auto;
-        background-color: globals.$accent-color;
-        
-        transform: translateX(-50%);
-        transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .mobile-menu.is-open {
-        transform: translate(-50%, 101vh);
-      }
-
-      .menu-close-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-
-        stroke: globals.$primery-background-color;
-        border: none;
-        background: none;
-
-      }
-      .mobile-menu-list{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        margin-top: 200px;
-      }
-
-      .mobile-menu-link{
-        display: block;
-        font-family: Inter;
-        font-size: 12px;
-        font-weight: 400;
-        color: $primery-background-color;
-      }
-
-      .toggle-switch-mobile {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-
-      }
-
+  }
+  .header-list {
+    display: none;
+  }
+  .toggle-switch {
+    display: none;
+  }
+  .slider {
+    border: 1px solid #cecdcd;
+  }
 }
 
-@media screen and (min-width: 768px){
-    .header-container {
-        margin-top: 10px;
-    }
+@media screen and (min-width: 768px) {
+  .header-container {
+    margin-top: 10px;
+  }
 
-    .header-list {
-        display: flex;
-    }
-    .logo {
-        font-size: 18px;
-        line-height: 1.1;
-}
-    .menu-open-btn,
-    .mobile-menu {
-        display: none;
-    }
-    .btns-wrap {
-        gap: 18px;
-    }
+  .header-list {
+    display: flex;
+  }
+  .logo {
+    font-size: 18px;
+    line-height: 1.1;
+  }
+  .menu-open-btn,
+  .mobile-menu {
+    display: none;
+  }
+  .btns-wrap {
+    gap: 18px;
+  }
+  .slider:before {
+    left: 1px;
+    bottom: 1px;
+  }
 }
 
-@media screen and (min-width: 1200px){
-    .header-container {
-        margin-top: 20px;
-    }
-    .btns-wrap {
-        gap: 24px;
-    }
+@media screen and (min-width: 1200px) {
+  .header-container {
+    margin-top: 20px;
+  }
+  .btns-wrap {
+    gap: 24px;
+  }
 }
 
 .current {
   color: globals.$accent-color;
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 768px) {
     font-weight: 500;
-    color:globals.$secondary-text-color;
+    color: globals.$secondary-text-color;
   }
 }
-
-
-

@@ -1,21 +1,23 @@
 import { getRecipeById } from './modal-card-service';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-// const recipeClick = document.querySelector('.button-click').addEventListener('click', onClickOpenRecipeModal);
+import { getFavoriteItem, toggleFavoriteItem } from '@utils/local-storage-service';
 
 const refs = {
   backdrop: document.querySelector('.backdrop'),
   modalRecipe: document.querySelector('.modal-recipe'),
 };
+let currentRecipe = {};
 
 async function onClickOpenRecipeModal(e) {
   e.preventDefault();
-  // const idRecipe = e.currentTarget.getAttribute('recipe-id');
   const elemTarget = e.target.closest('[recipe-id]');
   const idRecipe = elemTarget.getAttribute('recipe-id');
-  let isFavorite = localStorage.getItem(idRecipe) === 'favoriteRecipe';
+  let isFavorite = getFavoriteItem(idRecipe) !== undefined;
+
   try {
     const recipeData = await getRecipeById(idRecipe);
+
+    currentRecipe = recipeData;
     refs.modalRecipe.innerHTML = createModalRecipe(recipeData, isFavorite);
     refs.backdrop.classList.remove('is-hidden');
     document.body.style.overflow = 'hidden';
@@ -128,8 +130,8 @@ function createMarkupForTags(arr) {
     .join(' ');
   return markupForTags;
 }
-function createMarkupForIngred(arrobj) {
-  const markupForIngred = arrobj
+function createMarkupForIngred(arrObj) {
+  const markupForIngred = arrObj
     .map(
       ingredient =>
         ` <div class="modal-card-ingredients">
@@ -145,14 +147,14 @@ function createMarkupForIngred(arrobj) {
 }
 function onClickFavoriteBtn(e) {
   const idRecipe = e.currentTarget.getAttribute('recipe-id');
-  let isFavorite = localStorage.getItem(idRecipe) === 'favoriteRecipe';
+  let isFavorite = getFavoriteItem(idRecipe) !== undefined;
+
+  toggleFavoriteItem(currentRecipe);
 
   if (isFavorite) {
     document.querySelector('.modal-card-btn').textContent = 'Add to favorite';
-    localStorage.removeItem(idRecipe);
   } else {
     document.querySelector('.modal-card-btn').textContent = 'Remove from favorite';
-    localStorage.setItem(idRecipe, 'favoriteRecipe');
   }
 }
 

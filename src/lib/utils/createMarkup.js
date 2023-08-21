@@ -5,9 +5,9 @@ export function createLi(data) {
 export function createMarkup(data) {
   return data
     .map(
-      ({ title, preview, description }) => `
+      ({ title, preview, description, _id }) => `
   <li class="popular-item">
-      <a href="#">
+      <a href="#" recipe-id="${_id}">
       <img src="${preview}" class="popular-img"/>
     <div class="popular-text-wrapper">
       <h3>${title}</h3>

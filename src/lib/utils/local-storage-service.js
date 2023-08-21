@@ -60,6 +60,18 @@ function getFavoriteItems({ page = 1, category = "All" }) {
 }
 /**
  * 
+ * @param {string} _id ідентифікатор рецепта 
+ * @returns повертає об'єкт рецепта або undefined;
+ */
+function getFavoriteItem(_id) {
+    if (!_id || typeof _id !== "string") throw new Error("No ID is specified or this is not a string");
+    const items = getStorageFavorites();
+    const recipe = items.find(item => item._id === _id);
+    return recipe;
+}
+
+/**
+ * 
  * @param {object} items 
  * @returns Повертає масив категорій що є в localStorage["favorites"]
  */
@@ -71,6 +83,7 @@ function getCategories(items) {
     }
     return categories;
 }
+
 function checkCategories(category) {
     const categories = API.getCategories;
     if (categories.includes(category)) throw new Error("No category found");
@@ -95,5 +108,6 @@ export {
     changeTheme,
     asyncToggleFavoriteItem,
     toggleFavoriteItem,
-    getFavoriteItems
+    getFavoriteItems,
+    getFavoriteItem
 }

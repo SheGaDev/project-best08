@@ -1,3 +1,5 @@
+@use './globals';
+
 .is-hidden {
   display: none;
   visibility: hidden;
@@ -147,7 +149,7 @@
   }
 }
 .modal-card-ingredients-item {
-  height: 24px;
+  min-height: 24px;
   display: flex;
 
   justify-content: space-between;
@@ -167,6 +169,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.29;
+  text-align: right;
   color: rgba(5, 5, 5, 0.5);
 }
 .modal-card-about-descr {
@@ -174,10 +177,7 @@
   font-size: 14px;
   line-height: 1.29;
   color: rgba(5, 5, 5, 0.8);
-  margin-bottom: 40px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 32px;
-  }
+  margin-bottom: 0px;
 }
 
 .close-button {
@@ -247,5 +247,16 @@
     background-color: $primery-background-color;
     color: $accent-color;
     border: 1 px $accent-color;
+  }
+}
+
+.modal-card-info-wrap {
+  max-height: 500px;
+  overflow-y: auto;
+
+  margin-bottom: 40px;
+  @media screen and (min-width: 768px) {
+    max-height: 400px;
+    margin-bottom: 32px;
   }
 }

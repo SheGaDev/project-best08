@@ -1,7 +1,7 @@
 import { getRecipeById } from './modal-card-service';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const recipeClick = document.querySelector('.button-click').addEventListener('click', onClickOpenRecipeModal);
+// const recipeClick = document.querySelector('.button-click').addEventListener('click', onClickOpenRecipeModal);
 
 const refs = {
   backdrop: document.querySelector('.backdrop'),
@@ -10,7 +10,9 @@ const refs = {
 
 async function onClickOpenRecipeModal(e) {
   e.preventDefault();
-  const idRecipe = e.currentTarget.getAttribute('recipe-id');
+  // const idRecipe = e.currentTarget.getAttribute('recipe-id');
+  const elemTarget = e.target.closest('[recipe-id]');
+  const idRecipe = elemTarget.getAttribute('recipe-id');
   let isFavorite = localStorage.getItem(idRecipe) === 'favoriteRecipe';
   try {
     const recipeData = await getRecipeById(idRecipe);
@@ -92,16 +94,18 @@ function createModalRecipe(data, isFavorite) {
       <li class="time-value">${time} min</li>
     </ul>
   </div>
-  <div class="modal-card-ingredients-block">
-  ${createMarkupForIngred(ingredients)}
-  </div>
-  <div class="is-hidden-component">
-    <ul class="modal-card-attributes-tags attributes-tags-style-mobile">
-      ${createMarkupForTags(tags)}
-    </ul>
-  </div>
-  <p class="modal-card-about-descr">${instructions}</p>
 
+  <div class="modal-card-info-wrap">
+    <div class="modal-card-ingredients-block">
+    ${createMarkupForIngred(ingredients)}
+    </div>
+    <div class="is-hidden-component">
+      <ul class="modal-card-attributes-tags attributes-tags-style-mobile">
+      ${createMarkupForTags(tags)}
+      </ul>
+    </div>
+    <p class="modal-card-about-descr">${instructions}</p>
+  </div>
   <div class="modal-card-btn-wrap">
     <button type="button" class="modal-card-btn" recipe-id="${_id}">
       ${isFavorite ? 'Remove from favorite' : 'Add to favorite'}  

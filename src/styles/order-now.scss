@@ -20,3 +20,73 @@
   height: 632px;
   border-radius: 15px;
 }
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  opacity: 1;
+  transition: opacity $typical-transition;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.order-now-title {
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.order-now-form {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.order-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  color: rgba(5, 5, 5, 0.50);
+  font-size: 14px;
+}
+
+.order-input {
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.20);
+  width: 360px;
+  height: 48px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.order-comment {
+  width: 360px;
+  height: 100px;
+  padding-bottom: 0;
+}
+
+.now-form-btn {
+  margin-top: 40px;
+  border-radius: 15px;
+  background: $accent-color;
+  padding: 14px 162px;
+  border: none;
+  color: $primery-background-color;
+}
+
+.modal-svg {
+  width: 24px;
+  height: 24px;
+}

@@ -16,6 +16,13 @@
   z-index: 51;
   overflow: auto;
 
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 30px 0;
+
   &.is-hidden {
     transition: opacity 1000ms linear, visibility 300ms linear;
   }
@@ -46,11 +53,14 @@
   }
 }
 .modal-recipe-container {
+  position: relative;
+
   padding: 40px 20px;
   box-sizing: border-box;
   border-radius: 15px;
   width: 335px;
   height: auto;
+  margin: auto;
 
   display: block;
   flex-wrap: wrap;
@@ -59,12 +69,11 @@
 
   background-color: $secondary-text-color;
   text-align: left;
-  position: fixed;
+  // position: fixed;
 
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%) scale(0.65) rotate(0);
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%) scale(0.65) rotate(0);
 
   @media screen and (min-width: 768px) {
     width: 531px;
@@ -129,6 +138,7 @@
 }
 .modal-card-rating-value {
   display: flex;
+  flex-wrap: wrap;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.8;
@@ -251,12 +261,42 @@
 }
 
 .modal-card-info-wrap {
-  max-height: 500px;
+  max-height: 700px;
   overflow-y: auto;
 
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
-    max-height: 400px;
+    max-height: 600px;
     margin-bottom: 32px;
   }
+}
+.star-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.star-wrap-ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2px;
+}
+.star {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: rgba(5, 5, 5, 0.1);
+
+  width: 16px;
+  height: 16px;
+
+  @media screen and (min-width: 768px) and (max-width: 1199px) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.star.filled {
+  fill: $stars-color;
+  opacity: 1;
 }

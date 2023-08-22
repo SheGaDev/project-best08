@@ -1,6 +1,7 @@
 @use "./globals";
 @import '../../node_modules/swiper/swiper-bundle.css';
 
+
 p{margin-right: 0;}
 .swiper{
     --swiper-pagination-color: #9BB537;
@@ -19,7 +20,7 @@ p{margin-right: 0;}
 .hero{
     display: flex;
     flex-direction: row;
-    padding-right: 0;
+  
     padding-top: 70px;
 }
 .hero_section_content{
@@ -168,9 +169,10 @@ opacity: 0.2;}
     
 
     .hero{
+        width: 375px;
         overflow: hidden;
-        display: flex;
         flex-direction: column;
+        margin-bottom: 80px;
     }
     .swiper{
         position: relative;
@@ -276,9 +278,7 @@ opacity: 0.2;}
  
 
 @media screen and (min-width: 768px) and (max-width: 1200px){
-    .container{
-        max-width: 768px;
-    }
+    
     .swiper{
             
         width: 868px;
@@ -287,9 +287,11 @@ opacity: 0.2;}
       }
 
     .hero{
+        margin: 0 auto;
+        width: 768px;
         overflow: hidden;
-        display: flex;
         flex-direction: column;
+        margin-bottom: 100px;
     }
     .hero_section_content{
         width: 446px;
@@ -368,12 +370,13 @@ opacity: 0.2;}
 
 }
 @media screen and (min-width: 1200px){
-    .container{
-        width: 1200px;
-      }
+    
+      
     .hero{
+        width: 1200px;
         flex-direction: row;
         padding-top: 80px;
+        margin-bottom: 100px;
     }
     
     .hero_section_content{

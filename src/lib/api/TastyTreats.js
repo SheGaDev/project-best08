@@ -31,19 +31,19 @@ export default class TastyTreatsAPI {
         return response.data;
     }
     async fetchCategories() {
-        if (this.cache.categories.length) return this.cache.categories;
+        if (this.getCategories.length) return this.getCategories;
         const response = await axios('categories');
         this.cache.categories = [...response.data];
         return response.data;
     }
     async fetchAreas() {
-        if (this.cache.areas.length) return this.cache.areas;
+        if (this.getAreas.length) return this.getAreas;
         const response = await axios('areas');
         this.cache.areas = [...response.data];
         return response.data;
     }
     async fetchIngredients() {
-        if (this.cache.ingredients.length) return this.cache.ingredients;
+        if (this.getIngredients.length) return this.getIngredients;
         const response = await axios('ingredients');
         this.cache.ingredients = [...response.data];
         return response.data;

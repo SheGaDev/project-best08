@@ -29,7 +29,6 @@
   height: 100%;
   background-color: rgba(46, 47, 66, 0.4);
   opacity: 1;
-  transition: opacity $typical-transition;
 }
 
 .backdrop.is-hidden {
@@ -69,24 +68,30 @@
   height: 48px;
   padding-left: 18px;
   padding-right: 18px;
+  transition-property: outline;
 }
 
 .order-comment {
   width: 360px;
   height: 100px;
-  padding-bottom: 0;
 }
 
 .now-form-btn {
-  margin-top: 40px;
   border-radius: 15px;
   background: $accent-color;
   padding: 14px 162px;
   border: none;
   color: $primery-background-color;
+  margin-top: 25px;
 }
 
-.modal-svg {
+.close-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
   width: 24px;
   height: 24px;
+  background-color: $secondary-text-color;
+  border: none;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><g stroke="%23050505" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></g></svg>');
 }

@@ -26,16 +26,13 @@
 </div>
 -->
 
-<button data-modal-open type="button" class="btn btn-solutions">Order Service</button>
   <div class="backdrop is-hidden" data-modal>
     <div class="modal">
       <div class="order-now wrapper">
+        
         <div class="order-now-box">
           <button data-modal-close class="close-modal">
           </button>
-          <svg class="modal-svg">
-            <use href="./images/svgs/close.svg"></use>
-          </svg>
           <h3 class="order-now-title">order now</h3>
           <form class="order-now-form">
             <label class="order-label" for="username"
@@ -45,15 +42,15 @@
             <label class="order-label" for="phone"
               >Phone number 
               <input class="order-input" type="tel" name="phone_number" id="phone" />
-            </label>
+          </label>
             <label class="order-label" for="email"
               >Email
               <input class="order-input" type="email" name="email" id="email" />
             </label>
-            <label class="order-label"  for="comment"
+            <label class="order-label label-comment"  for="comment"
               >Comment
               <input class="order-input order-comment" type="textarea" name="comment" id="comment" />
-            </label>
+          </label>
             <button type="submit" class="now-form-btn">Send</button>
           </form>
         </div>

@@ -1,8 +1,6 @@
 @use "./globals";
 @import '../../node_modules/swiper/swiper-bundle.css';
 
-
-p{margin-right: 0;}
 .swiper{
     --swiper-pagination-color: #9BB537;
     --swiper-pagination-bullet-inactive-color: #050505;
@@ -16,7 +14,6 @@ p{margin-right: 0;}
     max-height: 480px;
   }
  
-  
 .hero{
     display: flex;
     flex-direction: row;
@@ -187,16 +184,17 @@ opacity: 0.2;}
         }
 
         .hero_title_style{
-            
             font-size: 26px;
+            font-weight: 400;
         }
 
         .hero_title{
-            width: 335px;
+           width: 335px;
             font-family: inherit;
             font-weight: 600;
             font-size: 26px;
             margin-bottom: 14px;
+           
         }
         
         .hero_text{
@@ -277,7 +275,7 @@ opacity: 0.2;}
 
  
 
-@media screen and (min-width: 768px) and (max-width: 1200px){
+@media screen and (min-width: 768px) and (max-width: 1280px){
     
     .swiper{
             
@@ -369,11 +367,11 @@ opacity: 0.2;}
 }
 
 }
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1280px){
     
       
     .hero{
-        width: 1200px;
+        width: 1280px;
         flex-direction: row;
         padding-top: 80px;
         margin-bottom: 100px;

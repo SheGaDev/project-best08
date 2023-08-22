@@ -1,10 +1,10 @@
 import Pagination from '../../node_modules/tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import { populateRecipesList } from './recipes-render';
 const container = document.querySelector('#pagination');
 
-const pagination = new Pagination(container, {
+export const pagination = new Pagination(container, {
   totalItems: 100,
-  itemsPerPage: 9,
   visiblePages: window.innerWidth > 768 ? 3 : 2,
   page: 1,
   template: {
@@ -17,3 +17,8 @@ const pagination = new Pagination(container, {
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip hover-class">' + '<span class="elips">...</span>' + '</a>',
   },
 });
+
+pagination.on("beforeMove", e => {
+  console.log(e)
+  populateRecipesList(e)
+})

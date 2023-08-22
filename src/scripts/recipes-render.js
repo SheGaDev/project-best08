@@ -1,16 +1,17 @@
+import { pagination } from './pagination';
 const { API } = require('@/lib/api');
 
 const recipesList = document.querySelector('.recipe-cards_wrapper');
 
 populateRecipesList();
 
-async function populateRecipesList() {
+export async function populateRecipesList(data) {
   try {
-    const recipesData = await API.fetchRecipes();
+    const recipesData = await API.fetchRecipes(data);
     const recipeResult = recipesData.results;
-
+    pagination.setItemsPerPage(recipeResult.length);
     const elements = recipeResult.map(renderRecipeCard);
-
+    recipesList.innerHTML = '';
     recipesList.append(...elements);
   } catch (error) {
     console.error('Error fetching recipes;', error);
@@ -111,6 +112,7 @@ function renderRecipeCard(recipeData) {
 ////////////////////////////////////////////////////////////////////////////////
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
+import { pagination } from './pagination';
 
 document.addEventListener('DOMContentLoaded', function () {
   new SlimSelect({

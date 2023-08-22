@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Your favorite recipes">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/public/favicon.ico">
     <link rel="stylesheet" href="styles/main.scss" />
-    <title>Favorites</title>
+    <title>TastyTreats | Favorites</title>
   </head>
   <body>
     <include src="./components/header.html"></include>
     <include src="./components/favorites/main.html"></include>
-    <script src="./scripts/header.js"></script>
-    <script>
-      setCurrentPage(favoriteEl);
-    </script>  
+    <include src="./components/to_top.html"></include>
+    <script type="module" src="./scripts/for-favorites.js"></script>
+    <script type="module" src="./scripts/current-pg.js"></script>
   </body>
 </html>

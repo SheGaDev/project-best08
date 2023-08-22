@@ -1,17 +1,18 @@
 @import '/node_modules/modern-normalize/modern-normalize.css';
 
-$primery-background-color: #F8F8F8;
+$primery-background-color: #f8f8f8;
 $primery-text-color: #050505;
-$accent-color: #9BB537;
-$stars-color: #EEA10C;
+$primery-text-color-transparent: #05050580;
+$accent-color: #9bb537;
+$stars-color: #eea10c;
 $secondary-background-color: #161616;
-$secondary-text-color: #FFFFFF;
+$secondary-text-color: #ffffff;
 $typical-transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 html {
   scroll-behavior: smooth;
   body {
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
     background-color: #fff;
   }
@@ -24,20 +25,21 @@ p {
   margin: 0;
 }
 ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 a {
-    text-decoration: none;
+  text-decoration: none;
+  color: currentColor;
 }
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .container {

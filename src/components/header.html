@@ -11,12 +11,18 @@
       </ul>
     
     <a href="./index.html" class="logo">tasty<span class="header-logo">treats.</span></a> 
-    <div class="btns-wrap">     
-      <button type="button" class="buy-btn">
-        <svg class="shopping-cart-icon" width="24" height="24">
-            <use href="./images/svgs/header-icons.svg#icon-shopping-cart"></use>
-        </svg>
-    </button>  
+    <div class="btns-wrap"> 
+<!-- Базовый вариант кнопки-иконки-->
+    <a href="tel:+830730000000" class="buy-btn"><svg class="shopping-cart-icon" width="24" height="24">
+      <use href="./images/svgs/header-icons.svg#icon-shopping-cart"></use>
+      </svg>
+    </a>
+<!-- Вариант кнопки-иконки для pop-up "Order now" -->
+    <!-- <button type="button" class="buy-btn">
+      <svg class="shopping-cart-icon" width="24" height="24">
+          <use href="./images/svgs/header-icons.svg#icon-shopping-cart"></use>
+      </svg>
+  </button>  -->
     <button type="button" class="menu-open-btn js-open-menu" ><svg class="menu-open-icon" width="32" height="32">
       <use href="./images/svgs/header-icons.svg#icon-menu"></use>
     </svg></button> 
@@ -30,10 +36,8 @@
 
     </nav>
 </div>
-
-
-
-<div class="mobile-menu js-menu-container" id="mobile-menu-list">
+<div class="mobile-menu-backdrop js-menu-container">
+<div class="mobile-menu">
     <div>
       <button type="button" class="close-btn menu-close-btn js-close-menu"><svg class="close-icon" width="32" height="32">
           <use href="./images/svgs/header-icons.svg#icon-x"></use>
@@ -41,10 +45,10 @@
       <nav>
         <ul class="mobile-menu-list list">
           <li class="mobile-menu-item">
-            <a href="./index.html" class="mobile-menu-link link">Home</a>
+            <a href="./index.html" class="mobile-menu-link" id="home-link-mobile">Home</a>
           </li>
           <li class="mobile-menu-item">
-            <a href="./favorites.html" class="mobile-menu-link link">Favorites</a>
+            <a href="./favorites.html" class="mobile-menu-link">Favorites</a>
           </li>
         </ul>
         <div class="toggle-switch-mobile"> 
@@ -56,4 +60,5 @@
       </div>  
       </nav>
     </div>
+</div>    
 </header>

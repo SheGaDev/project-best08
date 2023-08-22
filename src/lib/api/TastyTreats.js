@@ -1,26 +1,25 @@
-import axios from "axios";
-axios.defaults.baseURL = "https://tasty-treats-backend.p.goit.global/api/";
+import axios from 'axios';
+axios.defaults.baseURL = 'https://tasty-treats-backend.p.goit.global/api/';
 
 export default class TastyTreatsAPI {
     constructor() {
         this.cache = {
             categories: [],
             areas: [],
-            ingredients: []
-        }
+            ingredients: [],
+        };
         this.currentPage = 1;
     }
     // { title, category, area, ingredients, time }
     requestJoin(data) {
-        const query = ["limit=9"];
+        let query = "limit=9";
         for (const [key, value] of Object.entries(data)) {
-            query.push(`${key}=${value}`);
+            query += `&${key}=${value}`;
         }
-        return query.join("&")
+        return query;
     }
     async fetchRecipes(data = {}) {
-        const query = Object.keys(data).length ? `recipes?${this.requestJoin(data)}` : "recipes";
-        const response = await axios(query);
+        const response = await axios(`recipes?${this.requestJoin(data)}`);
         return response.data;
     }
     async fetchRecipe(recipeId) {
@@ -28,26 +27,29 @@ export default class TastyTreatsAPI {
         return response.data;
     }
     async fetchEvents() {
-        const response = await axios("events");
+        const response = await axios('events');
         return response.data;
     }
     async fetchCategories() {
-        const response = await axios("categories");
+        if (this.getCategories.length) return this.getCategories;
+        const response = await axios('categories');
         this.cache.categories = [...response.data];
         return response.data;
     }
     async fetchAreas() {
-        const response = await axios("areas");
+        if (this.getAreas.length) return this.getAreas;
+        const response = await axios('areas');
         this.cache.areas = [...response.data];
         return response.data;
     }
     async fetchIngredients() {
-        const response = await axios("ingredients");
+        if (this.getIngredients.length) return this.getIngredients;
+        const response = await axios('ingredients');
         this.cache.ingredients = [...response.data];
         return response.data;
     }
     async getPopularRecipes() {
-        const response = await axios("recipes/popular");
+        const response = await axios('recipes/popular');
         return response.data;
     }
     get getCategories() {

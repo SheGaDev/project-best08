@@ -101,6 +101,8 @@ function renderRecipeCard(recipeData) {
   btn.type = 'button';
   btn.textContent = 'See recipe';
   btn.classList.add('see-recipe_button');
+  // add recipe-id attribute for open modal window
+  btn.setAttribute('recipe-id', recipeData._id);
   cardBottomWrapper.appendChild(btn);
 
   return recipeCard;

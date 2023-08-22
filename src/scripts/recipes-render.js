@@ -1,7 +1,9 @@
 import { pagination } from './pagination';
 const { API } = require('@/lib/api');
+import Notiflix from 'notiflix';
 
 const recipesList = document.querySelector('.recipe-cards_wrapper');
+const cardsWrapper = document.querySelector('.filters-and-cards__wrapper');
 
 populateRecipesList();
 
@@ -14,6 +16,13 @@ export async function populateRecipesList(data) {
     recipesList.innerHTML = '';
     recipesList.append(...elements);
   } catch (error) {
+    recipesList.innerHTML = `<div class="error-msg-title">Oops...</div>
+      <div class="error-msg">An error occured, please try to reload the page</div>`;
+    recipesList.style.flexDirection = 'column';
+    // recipesList.style.marginTop = '180px';
+
+    Notiflix.Notify.failure('There was an error while loading the recipes');
+
     console.error('Error fetching recipes;', error);
     throw error;
   }
@@ -128,14 +137,38 @@ document.addEventListener('DOMContentLoaded', function () {
       placeholderText: 'Region',
     },
   });
-
-  new SlimSelect({
-    select: '#ingredients',
-    settings: {
-      placeholderText: 'Product',
-    },
-  });
 });
+
+const ingredientsSelect = document.querySelector('#ingredients');
+
+getIngredients();
+
+async function getIngredients() {
+  try {
+    const ingredientsData = await API.fetchIngredients();
+
+    const sortedIngredientsData = ingredientsData.sort((a, b) => a.name.localeCompare(b.name));
+
+    console.log(sortedIngredientsData);
+
+    const elements = sortedIngredientsData.map(renderIngredientsSelectOptions).join('');
+
+    ingredientsSelect.insertAdjacentHTML('afterbegin', elements);
+
+    new SlimSelect({
+      select: '#ingredients',
+      settings: {
+        placeholderText: 'Product',
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
+function renderIngredientsSelectOptions(ingredient) {
+  return `<option value="${ingredient.name}">${ingredient.name}</option>`;
+}
 
 // const timeSelect = document.querySelector('#time');
 // console.log(timeSelect);

@@ -56,7 +56,6 @@
   font-weight: 600;
   line-height: 1.28;
   text-transform: uppercase;
-  // letter-spacing: 0.03em;
 }
 
 .recipe-card p {
@@ -179,4 +178,18 @@
   @media screen and (min-width: 1280) {
     gap: 64px;
   }
+}
+
+.error-msg-title {
+  color: rgba(5, 5, 5, 0.5);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.error-msg {
+  color: rgba(5, 5, 5, 0.5);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.25;
 }

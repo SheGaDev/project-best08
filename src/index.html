@@ -4,18 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Main page recipes">
+    <link rel="icon" type="image/x-icon" sizes="64x64" href="/public/favicon.ico">
     <link rel="stylesheet" href="styles/main.scss" />
-    <title>Home</title>
+    <title>TastyTreats | Home</title>
   </head>
   <body>
     <include src="./components/header.html"></include>
-
     <include src="./components/home/main.html"></include>
-
+    <include src="./components/to_top.html"></include>
     <script type="module" src="./scripts/index.js"></script>
-    <script src="./scripts/header.js"></script> 
-    <script>
-        setCurrentPage(homeEl);
-    </script> 
+    <script type="module" src="./scripts/current-pg.js"></script>
   </body>
 </html>

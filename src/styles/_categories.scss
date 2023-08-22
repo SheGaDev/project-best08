@@ -1,6 +1,6 @@
 @use './globals';
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 0) {
   .all-categories-btn {
     padding: 14px 28px;
     border: 1px solid rgba(5, 5, 5, 0.2);
@@ -9,16 +9,20 @@
     color: globals.$primery-text-color-transparent;
     font-weight: 500;
     font-size: 18px;
-    transition: color globals.$typical-transition, border globals.$typical-transition;
-    &:hover {
-      color: globals.$accent-color;
-      border:1px solid globals.$accent-color;
+    transition: background-color globals.$typical-transition, border globals.$typical-transition,
+      color globals.$typical-transition;
+    &:hover,
+    &:focus {
+      color: globals.$primery-background-color;
+      background-color: globals.$accent-color;
+      border: 1px solid globals.$accent-color;
     }
   }
   .categories-list {
     display: flex;
     flex-direction: column;
     gap: 18px;
+    width: 100%;
 
     height: 198px;
     margin-top: 24px;
@@ -31,7 +35,6 @@
       background-color: transparent;
     }
     &::-webkit-scrollbar-thumb {
-      height: 116px;
       border-radius: 12px;
       background: rgba(5, 5, 5, 0.18);
     }
@@ -40,11 +43,19 @@
     color: rgba(5, 5, 5, 0.3);
     font-size: 14px;
     font-weight: 500;
-    cursor: pointer;
     line-height: 1.2;
-    transition: color globals.$typical-transition;
-    &:hover {
-      color: globals.$accent-color;
+    a {
+      transition: color globals.$typical-transition;
+      &:hover,
+      &:focus {
+        color: globals.$accent-color;
+      }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .categories-list {
+    height: 416px;
   }
 }

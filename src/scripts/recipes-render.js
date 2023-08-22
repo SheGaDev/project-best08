@@ -111,20 +111,6 @@ export function renderRecipeCard(recipeData) {
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   new SlimSelect({
-//     select: '#selectElement',
-//   });
-
-//   const select = document.querySelector('#selectElement');
-//   console.log(select);
-
-//   const addOption = document.createElement('option');
-//   addOption.textContent = 'bebra';
-
-//   select.appendChild(addOption);
-// });
-
 document.addEventListener('DOMContentLoaded', function () {
   new SlimSelect({
     select: '#time',

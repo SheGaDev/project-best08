@@ -9,22 +9,24 @@
 }
 
 .hero-favorites-container {
-    min-width: 200px;
+    // min-width: 200px;
     padding-left: 20px;
     padding-right: 20px;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .hero-favorites-img {
-    margin-left: auto;
-    margin-right: auto;
+    // margin-left: auto;
+    // margin-right: auto;
 }
 
 
 @media screen and (min-width: 375px) {
     .hero-favorites-container {
-        width: 375px;
+        // width: 375px;
     }
 }
 
@@ -36,7 +38,7 @@
 
 @media screen and (min-width: 768px) {
     .hero-favorites-container {
-        width: 768px;
+        // width: 768px;
         padding-left: 32px;
         padding-right: 32px;
     }
@@ -44,7 +46,7 @@
 
 @media screen and (min-width: 1200px) {
     .hero-favorites-container {
-        width: 1200px;
+        // width: 1200px;
         padding-left: 100px;
         padding-right: 100px;
     }

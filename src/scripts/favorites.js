@@ -1,6 +1,7 @@
 // import { refs } from "@api/refs";
-import { getFavoriteItems } from "../lib/utils/local-storage-service";
+import { getStorageFavorites, getCategories, getFavoriteItems, asyncToggleFavoriteItem } from "../lib/utils/local-storage-service";
 import { renderRecipeCard } from "./recipes-render";
+import { onClickOpenRecipeModal } from '../../scripts/modal-card';
 
 const refs = {
     favoriteHeroSection: document.querySelector(".hero-favorites-section"),
@@ -10,32 +11,36 @@ const refs = {
     
     favoriteCategoriesList: document.querySelector(".favorite-categories-box"),
     favoriteCategoryBtn: document.querySelector(".favorite-categories-btn"),
-
-    favoriteHeart: document.querySelector(".favourite-heart"),
-    seeRecipeBtn: document.querySelector("see-recipe_button"),
+    favoriteCardsList: document.querySelector(".favorite-cards-list"),
 }
 
-//Основна логіка написана для випадку, коли у localStorage зберігається масив об'єктів (масив карток з рецептами)
-// const FAVORITE_KEY = "favorites";
-let favoriteItems = getFavoriteItems();
+let favoriteItems = getStorageFavorites();
 
-// array with objects(recipes) if (favoriteItems || favoriteItems.length !== 0)  or favoriteRecipe !== ''
-if (favoriteItems || favoriteItems.length !== 0) {
+if (favoriteItems && favoriteItems.length !== 0) {
     refs.favoriteHeroSection.classList.remove('unvisible');
     refs.emptyFavoriteSection.classList.add('is-hidden');
     refs.favoriteCategoriesSection.classList.remove('is-hidden');
     refs.favoriteCardsSection.classList.remove('is-hidden');
 }
 
-//export/import
-// favoriteRecipe.forEach((element) => { let favoriteCategories = []; favoriteCategories.push(localStorage.getItem("element").category) })
-function getCategoriesInFavorites(array) {
-    let favoriteCategories = [];
-    array.map(({ category }) => {
-        favoriteCategories.push(category).filter((category, index, array) => { array.indexOf(category) === index });
-        return favoriteCategories;
-    })
+let currentFavoriteCategory = localStorage.getItem('currentCategory', selectedCategory);
+
+if (currentFavoriteCategory !== 'All') {
+    favoriteItems = getFavoriteItems(currentFavoriteCategory);          // object or only selectedCategory ??????? //
+} else {
+    favoriteItems;
 }
+
+let favoriteCategoriesArray = getCategories(favoriteItems);
+renderFavoriteCategories(favoriteCategoriesArray);
+
+let favoriteItemsData = getFavoriteItems();
+renderFavoriteCards(favoriteItemsData.results);
+
+refs.favoriteCardsList.addEventListener('click', onClickOpenRecipeModal);
+refs.favoriteCardsList.addEventListener('click', onFavoriteCardClick);
+
+refs.favoriteCategoriesList.addEventListener('click', createFilteredCards);
 
 //export/import
 function createFavoriteCategoriesMarkup(array) {
@@ -48,13 +53,12 @@ function createFavoriteCategoriesMarkup(array) {
 //export/import
 function renderFavoriteCategories(array) {
     refs.favoriteCategoriesSection.innerHTML = '';
-    const favoriteCategories = getCategoriesInFavorites(array);
-    const favoriteCategoriesMarkup = createFavoriteCategoriesMarkup(favoriteCategories);
+    // const favoriteCategories = getCategoriesInFavorites(array);
+    const favoriteCategoriesMarkup = createFavoriteCategoriesMarkup(array);
     refs.favoriteCategoriesSection.insertAdjacentHTML('beforeend', favoriteCategoriesMarkup);
 }
 
 //export/import
-// favoriteItems.forEach((element) => { let favoriteCards = []; favoriteCards.push(localStorage.getItem("element"))})
 function renderFavoriteCards(array) {
     refs.favoriteCardsSection.innerHTML = '';
     array.map((object) => {
@@ -62,42 +66,33 @@ function renderFavoriteCards(array) {
 });
 }
 
-//export/import
-// function removeFavoriteItem(evt) {
-//     evt.preventDefault();
-//     // recive key!!!!!
-//     let key = evt.currentTarget.key;
-//     locacStorage.removeItem(key);
+// export/import      !!!!!! async !!!!!!!!!
+async function onFavoriteCardClick(evt) {
+    evt.preventDefault();
+    if (evt.target.className !== 'favourite-heart') {
+        return;
+    }
+    let recipeId = evt.target.closest('[_id]');           // check id !!!!! //
+    await asyncToggleFavoriteItem(recipeId);
     
-//     renderFavoriteCategories();
-//     renderFavoriteCards();
-// }
-
-renderFavoriteCategories(favoriteItems);
-renderFavoriteCards(favoriteItems);
-// refs.favoriteHeart.addEventListener('click', removeFavoriteItem);
-refs.favoriteCategoryBtn.addEventListener('click', createFilteredCards);
-// refs.seeRecipeBtn.addEventListener('click', openModalWindow);
-
-// function openModalWindow(evt) {
-//     evt.preventDefault();
-// }
-
+    renderFavoriteCategories();      // async ???????????? //
+    renderFavoriteCards();           // async ???????????? //
+}
 
 function createFilteredCards(evt) {
     evt.preventDefault();
 
-    let selectedCategory = evt.currentTarget.value;
+    let selectedCategory = evt.target.value;
+    if (selectedCategory === 'All categories') {
+        selectedCategory = 'All';
+    }
+    localStorage.setItem('currentCategory', selectedCategory);
 
-    let filteredCards = [];
-    favoriteItems.map((object) => {
-        if (object.category === selectedCategory) {
-            filteredCards.push(object);
-        }
-    })
-    renderFavoriteCards(filteredCards);
+    getFavoriteItems(selectedCategory);          // object or only selectedCategory ??????? //
+    renderFavoriteCards(favoriteItemsData.results);
+
+// refs.favoriteCardsList.addEventListener('click', onFavoriteCardClick);          // necessary ????? //
+
+// refs.favoriteCategoriesList.addEventListener('click', createFilteredCards);    // necessary ????? //
+
 }
-
-
-
-

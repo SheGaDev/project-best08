@@ -5,7 +5,7 @@
 }
 
 .header-container {
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .header-navigation {
@@ -255,7 +255,7 @@ input:checked + .slider:before {
 
 @media screen and (min-width: 768px) {
   .header-container {
-    margin-top: 10px;
+    padding-top: 10px;
     padding-left: 32px;
     padding-right: 32px;
 
@@ -283,7 +283,7 @@ input:checked + .slider:before {
 
 @media screen and (min-width: 1200px) {
   .header-container {
-    margin-top: 20px;
+    padding-top: 20px;
     padding-left: 100px;
     padding-right: 100px;
   }

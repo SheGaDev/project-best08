@@ -1,4 +1,4 @@
-@use "./globals";
+@use './globals';
 
 .order-now.wrapper {
   position: fixed;
@@ -8,7 +8,11 @@
   height: 100%;
   background-color: #0000004d;
 }
-
+.inputs-styles {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
 .order-now-box {
   position: absolute;
   background-color: globals.$secondary-text-color;
@@ -46,10 +50,9 @@
 }
 
 .order-now-form {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
 }
 
 .order-label {
@@ -57,18 +60,22 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  color: rgba(5, 5, 5, 0.50);
+  color: rgba(5, 5, 5, 0.5);
   font-size: 14px;
 }
 
 .order-input {
+  resize: none;
   border-radius: 15px;
-  border: 1px solid rgba(5, 5, 5, 0.20);
+  border: 1px solid rgba(5, 5, 5, 0.2);
   width: 360px;
   height: 48px;
-  padding-left: 18px;
-  padding-right: 18px;
+  padding: 8px 10px 8px 12px;
   transition-property: outline;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 .order-comment {
@@ -82,7 +89,7 @@
   padding: 14px 162px;
   border: none;
   color: $primery-background-color;
-  margin-top: 25px;
+  margin-top: 40px;
 }
 
 .close-modal {

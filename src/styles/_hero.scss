@@ -20,7 +20,6 @@ p{margin-right: 0;}
     display: flex;
     flex-direction: row;
     padding-right: 0;
-    overflow: hidden;
     padding-top: 70px;
 }
 .hero_section_content{
@@ -168,7 +167,7 @@ opacity: 0.2;}
     
 
     .hero{
-        
+        overflow: hidden;
         display: flex;
         flex-direction: column;
     }
@@ -176,7 +175,7 @@ opacity: 0.2;}
         position: relative;
         width: 500px;
         min-height: 307px; 
-        overflow: hidden;
+    
         --swiper-pagination-bullet-size: 8px;
       }
       .hero_section_content{
@@ -287,7 +286,7 @@ opacity: 0.2;}
       }
 
     .hero{
-        
+        overflow: hidden;
         display: flex;
         flex-direction: column;
     }

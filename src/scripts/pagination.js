@@ -1,6 +1,5 @@
-import Pagination from 'tui-pagination';
+import Pagination from '../../node_modules/tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
-import '../styles/_pagination.scss';
 const container = document.querySelector('#pagination');
 
 const pagination = new Pagination(container, {

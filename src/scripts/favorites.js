@@ -42,7 +42,6 @@ refs.favoriteCardsList.addEventListener('click', onFavoriteCardClick);
 
 refs.favoriteCategoriesList.addEventListener('click', createFilteredCards);
 
-//export/import
 function createFavoriteCategoriesMarkup(array) {
     array.forEach(element => {
         return `<button type="button" class="favorite-categories-btn">${element}</button>`;
@@ -50,7 +49,6 @@ function createFavoriteCategoriesMarkup(array) {
 }
 // .join('')
 
-//export/import
 function renderFavoriteCategories(array) {
     refs.favoriteCategoriesSection.innerHTML = '';
     // const favoriteCategories = getCategoriesInFavorites(array);
@@ -58,7 +56,6 @@ function renderFavoriteCategories(array) {
     refs.favoriteCategoriesSection.insertAdjacentHTML('beforeend', favoriteCategoriesMarkup);
 }
 
-//export/import
 function renderFavoriteCards(array) {
     refs.favoriteCardsSection.innerHTML = '';
     array.map((object) => {
@@ -66,7 +63,6 @@ function renderFavoriteCards(array) {
 });
 }
 
-// export/import      !!!!!! async !!!!!!!!!
 async function onFavoriteCardClick(evt) {
     evt.preventDefault();
     if (evt.target.className !== 'favourite-heart') {

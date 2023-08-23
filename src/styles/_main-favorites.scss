@@ -93,21 +93,10 @@
     gap: 24px;
 }
 
-
-@media screen and (min-width: 375px) {
-    .empty-favorite-list-container, .favorite-categories-container, .favorite-cards-container {
-        // width: 375px;
-    }
-}
-
 @media screen and (min-width: 768px) {
     .empty-favorite-list-section {
         margin-top: 0;
         padding-top: 64px;
-    }
-
-    .empty-favorite-list-container, .favorite-categories-container, .favorite-cards-container {
-        // width: 768px;
     }
 
     .empty-favorite-list-container {
@@ -151,10 +140,7 @@
     // }
 }
 
-@media screen and (min-width: 1200px) {
-    .empty-favorite-list-container, .favorite-categories-container, .favorite-cards-container {
-        // width: 1200px;
-    }
+@media screen and (min-width: 1280px) {
 
     .favorite-cards-section {
         padding-bottom: 100px;

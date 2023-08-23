@@ -1,3 +1,4 @@
+import { onClickOpenRecipeModal } from './modal-card';
 const { API } = require('@/lib/api');
 
 const recipesList = document.querySelector('.recipe-cards_wrapper');
@@ -12,6 +13,9 @@ async function populateRecipesList() {
     const elements = recipeResult.map(renderRecipeCard);
 
     recipesList.append(...elements);
+    //add Listener for open modal recipe window
+    const recipeClick = document.querySelector('.recipe-cards_wrapper');
+    recipeClick.addEventListener('click', onClickOpenRecipeModal);
   } catch (error) {
     console.error('Error fetching recipes;', error);
     throw error;

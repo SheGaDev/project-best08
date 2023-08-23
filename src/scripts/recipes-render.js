@@ -3,13 +3,13 @@ const { API } = require('@/lib/api');
 import Notiflix from 'notiflix';
 
 const recipesList = document.querySelector('.recipe-cards_wrapper');
-const cardsWrapper = document.querySelector('.filters-and-cards__wrapper');
 
 populateRecipesList();
 
 export async function populateRecipesList(data) {
   try {
     const recipesData = await API.fetchRecipes(data);
+
     const recipeResult = recipesData.results;
     pagination.setItemsPerPage(recipeResult.length);
     const elements = recipeResult.map(renderRecipeCard);
@@ -130,28 +130,50 @@ document.addEventListener('DOMContentLoaded', function () {
       placeholderText: '0 min',
     },
   });
-
-  new SlimSelect({
-    select: '#area',
-    settings: {
-      placeholderText: 'Region',
-    },
-  });
 });
 
 const ingredientsSelect = document.querySelector('#ingredients');
+const areaSelect = document.querySelector('#area');
 
+// getTime();
+// async function getTime() {
+//   try {
+//     const recipesData = await API.fetchRecipes();
+//     console.log(recipesData);
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+getAreas();
+async function getAreas() {
+  try {
+    const areasData = await API.fetchAreas();
+    const sortedAreaData = sortByAlphabet(areasData, 'name');
+    // console.log(sortedAreaData);
+
+    const elements = sortedAreaData.map(element => renderIngredientsSelectOptions(element._id, element.name)).join('');
+
+    areaSelect.insertAdjacentHTML('afterbegin', elements);
+
+    new SlimSelect({
+      select: '#area',
+      settings: {
+        placeholderText: 'Region',
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
+}
 getIngredients();
-
 async function getIngredients() {
   try {
     const ingredientsData = await API.fetchIngredients();
+    const sortedIngredientsData = sortByAlphabet(ingredientsData, 'name');
 
-    const sortedIngredientsData = ingredientsData.sort((a, b) => a.name.localeCompare(b.name));
-
-    console.log(sortedIngredientsData);
-
-    const elements = sortedIngredientsData.map(renderIngredientsSelectOptions).join('');
+    const elements = sortedIngredientsData
+      .map(element => renderIngredientsSelectOptions(element._id, element.name))
+      .join('');
 
     ingredientsSelect.insertAdjacentHTML('afterbegin', elements);
 
@@ -166,13 +188,47 @@ async function getIngredients() {
   }
 }
 
-function renderIngredientsSelectOptions(ingredient) {
-  return `<option value="${ingredient.name}">${ingredient.name}</option>`;
+function renderIngredientsSelectOptions(value, name) {
+  return `<option value="${value}">${name}</option>`;
 }
 
-// const timeSelect = document.querySelector('#time');
-// console.log(timeSelect);
+function sortByAlphabet(data, key) {
+  return data.sort((a, b) => a[key].localeCompare(b[key]));
+}
 
-// timeSelect.addEventListener('change', event => {
-//   console.log(event.target.value);
-// });
+ingredientsSelect.addEventListener('change', filterByIngredient);
+
+async function filterByIngredient(event) {
+  const selectedIngredient = event.target.value;
+  console.log('Selected ingredient:', selectedIngredient);
+  console.log(selectedIngredient.includes('640c2dd963a319ea671e367e')); // true
+
+  try {
+    const recipesData = await API.fetchRecipes();
+    const recipeResult = recipesData.results;
+    console.log('Recipe results:', recipeResult);
+
+    const filteredData = recipeResult.filter(result => {
+      const ingredientIds = result.ingredients.map(ingredient => ingredient.id);
+      return ingredientIds.includes(selectedIngredient);
+    });
+
+    console.log('Filtered data:', filteredData);
+
+    renderFilteredRecipes(filteredData);
+
+    if (filteredData.length === 0) {
+      Notiflix.Notify.failure('No matcher were found');
+    } else {
+      Notiflix.Notify.success(`We found ${filteredData.length} matches!`);
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+function renderFilteredRecipes(data) {
+  const elements = data.map(renderRecipeCard);
+  recipesList.innerHTML = '';
+  recipesList.append(...elements);
+}

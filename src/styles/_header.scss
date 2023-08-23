@@ -68,7 +68,7 @@
   fill: transparent;
   stroke: globals.$primery-text-color;
   width: 24px;
-  height: 72;
+  height: 72px;
   transition: stroke globals.$typical-transition;
 }
 
@@ -234,13 +234,6 @@ input:checked + .slider:before {
 }
 
 @media screen and (max-width: 767px) {
-  .header-container {
-    max-width: 375px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: auto;
-    margin-right: auto;
-  }
   .header-list {
     display: none;
   }

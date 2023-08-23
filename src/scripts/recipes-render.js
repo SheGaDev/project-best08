@@ -1,4 +1,5 @@
 import { pagination } from './pagination';
+import { onClickOpenRecipeModal } from './modal-card';
 const { API } = require('@/lib/api');
 import Notiflix from 'notiflix';
 
@@ -15,6 +16,9 @@ export async function populateRecipesList(data) {
     const elements = recipeResult.map(renderRecipeCard);
     recipesList.innerHTML = '';
     recipesList.append(...elements);
+    //add Listener for open modal recipe window
+    const recipeClick = document.querySelector('.recipe-cards_wrapper');
+    recipeClick.addEventListener('click', onClickOpenRecipeModal);
   } catch (error) {
     recipesList.innerHTML = `<div class="error-msg-title">Oops...</div>
       <div class="error-msg">An error occured, please try to reload the page</div>`;
@@ -112,6 +116,8 @@ export function renderRecipeCard(recipeData) {
   btn.type = 'button';
   btn.textContent = 'See recipe';
   btn.classList.add('see-recipe_button');
+  // add recipe-id attribute for open modal window
+  btn.setAttribute('recipe-id', recipeData._id);
   cardBottomWrapper.appendChild(btn);
 
   return recipeCard;

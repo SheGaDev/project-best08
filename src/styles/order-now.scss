@@ -36,6 +36,7 @@
 }
 
 .backdrop.is-hidden {
+  display: none;
   opacity: 0;
   pointer-events: none;
 }
@@ -70,7 +71,7 @@
   border: 1px solid rgba(5, 5, 5, 0.2);
   width: 360px;
   height: 48px;
-  padding: 8px 10px 8px 12px;
+  padding: 10px 10px;
   transition-property: outline;
   overflow: auto;
   &::-webkit-scrollbar {

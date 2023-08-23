@@ -1,22 +1,22 @@
-<div class="backdrop" data-modal>
+<div class="backdrop is-hidden" data-modal>
   <div class="modal">
     <div class="order-now wrapper">
       <div class="order-now-box">
-        <button data-modal-close class="close-modal"></button>
+        <button class="close-modal"></button>
         <h3 class="order-now-title">order now</h3>
         <form class="order-now-form">
           <div class="inputs-styles">
             <label class="order-label" for="username"
-              >Name
-              <input class="order-input" type="text" id="username" name="username" autofocus />
+              >Name&#42;
+              <input class="order-input" autocomplete="on" type="text" id="username" name="username" autofocus />
             </label>
             <label class="order-label" for="phone"
-              >Phone number
-              <input class="order-input" type="tel" name="phone_number" id="phone" />
+              >Phone number&#42;
+              <input class="order-input" autocomplete="on" type="tel" name="phone_number" id="phone" />
             </label>
             <label class="order-label" for="email"
-              >Email
-              <input class="order-input" type="email" name="email" id="email" />
+              >Email&#42;
+              <input class="order-input" autocomplete="on" type="email" name="email" id="email" />
             </label>
             <label class="order-label label-comment" for="comment"
               >Comment

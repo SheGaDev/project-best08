@@ -4,10 +4,6 @@
   overflow: hidden;
 }
 
-.header-container {
-  padding-top: 20px;
-}
-
 .header-navigation {
   display: flex;
   justify-content: space-between;
@@ -20,8 +16,7 @@
 
 .header-link {
   display: block;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 28px 0;
 
   font-weight: 500;
   font-size: 12px;
@@ -37,6 +32,7 @@
 }
 
 .logo {
+  padding: 28px 0;
   font-family: Inter;
   font-size: 16px;
   font-weight: 600;
@@ -65,11 +61,11 @@
 .buy-btn {
   border: none;
   background: none;
-  padding: 0;
+  padding: 24px 0;
   fill: transparent;
   stroke: globals.$primery-text-color;
   width: 24px;
-  height: 24px;
+  height: 72;
   transition: stroke globals.$typical-transition;
 }
 
@@ -136,9 +132,9 @@ input:checked + .slider:before {
 .menu-open-btn {
   background-color: transparent;
   border: none;
-  padding: 0;
+  padding: 20px 0;
   width: 32px;
-  height: 32px;
+  height: 72px;
   stroke: globals.$primery-text-color;
   transition: stroke globals.$typical-transition;
 }
@@ -254,13 +250,6 @@ input:checked + .slider:before {
 }
 
 @media screen and (min-width: 768px) {
-  .header-container {
-    padding-top: 10px;
-    padding-left: 32px;
-    padding-right: 32px;
-
-  }
-
   .header-list {
     display: flex;
   }
@@ -282,10 +271,8 @@ input:checked + .slider:before {
 }
 
 @media screen and (min-width: 1200px) {
-  .header-container {
-    padding-top: 20px;
-    padding-left: 100px;
-    padding-right: 100px;
+  .logo {
+    padding: 40px 0;
   }
   .btns-wrap {
     gap: 24px;

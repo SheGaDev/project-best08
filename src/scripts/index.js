@@ -5,3 +5,6 @@ import '@api/index.js';
 import './mob-menu';
 import './to_top';
 import './pagination.js';
+import './current-pg';
+import './dark-light-switch';
+

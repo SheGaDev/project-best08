@@ -1,0 +1,96 @@
+:root{
+    --primery-background-color: #f8f8f8;
+    --primery-text-color:#050505;
+    --primery-text-color-transparent-deep:rgba(5, 5, 5, 0.8);
+    --primery-text-color-transparent-dark: rgba(5, 5, 5, 0.5);
+    --primery-text-color-transparent: rgba(5, 5, 5, 0.3);
+    --primery-text-color-transparent-light: rgba(5, 5, 5, 0.18);
+    --accent-color: #9bb537;
+    --secondary-text-color: #ffffff;
+    --border-color: rgba(5, 5, 5, 0.2);
+    
+    color-scheme: light;
+}
+
+body, .header-logo, .header-link {
+    background-color: var(--primery-background-color);
+    color: var(--primery-text-color);
+}
+
+.menu-open-btn, .buy-btn {
+    stroke: var(--primery-text-color);
+}
+.all-categories-btn, 
+.filters p, 
+.search-input, .search-input::placeholder {
+    color: var( --primery-text-color-transparent-dark);
+    border-color: var(--border-color);
+    background: transparent;
+}
+
+.search-input, .time-select, .area-select, .ingredients-select{
+    color: var( --primery-text-color-transparent-dark);
+    border-color: var(--border-color);
+    background: transparent;
+  
+    &.ss-main .ss-values .ss-placeholder {
+        color: var( --primery-text-color-transparent-dark);
+
+    }
+}
+div.categories-wrapper > div:nth-child(1) > ul > li:nth-child(1) > a {
+   color: var(--primery-text-color-transparent);
+
+}
+
+// ::-webkit-scrollbar-thumb {
+//   background-color: #ff9900; /* Change this to your desired color */
+// }
+div.popular-wrapper > ul > li > a > div > p {
+    color: var(--primery-text-color-transparent-deep);
+}
+.tui-pagination .tui-page-btn {
+    border-color: var(--border-color); 
+}
+
+
+
+
+
+.categorie-items, .area-select.ss-main, .ss-placeholder {
+    color: var(--primery-text-color-transparent);
+}
+
+.search-input-button .search-icon{
+    fill: var(--primery-text-color);
+}
+.reset-button{
+    color: var( --primery-text-color-transparent-dark);
+}
+.search-input, .ss-values, p.text, .elips {
+    color: var(--primery-text-color);
+}
+
+
+// Dark
+
+.dark{
+    --primery-background-color: #161616;
+    --primery-text-color: #fff;
+    --primery-text-color-transparent-deep:rgba(255, 255, 255, 0.8);
+    --primery-text-color-transparent-dark: rgba(255, 255, 255, 0.5); 
+    --primery-text-color-transparent: rgba(255, 255, 255, 0.3);
+    --primery-text-color-transparent-light: rgba(255, 255, 255, 0.18);
+    --accent-color: #9bb537;
+    --secondary-text-color: #ffffff; 
+    --border-color: rgba(255, 255, 255, 0.2);
+    color-scheme: dark; 
+}
+
+.current {
+    color: var(--accent-color);
+    @media screen and (max-width: 768px) {
+      font-weight: 500;
+      color: var(--secondary-text-color);
+    }
+  }

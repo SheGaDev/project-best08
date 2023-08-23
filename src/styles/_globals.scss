@@ -2,7 +2,7 @@
 
 $primery-background-color: #f8f8f8;
 $primery-text-color: #050505;
-$primery-text-color-transparent: #05050580;
+$primery-text-color-transparent: rgba(5, 5, 5, 0.502);
 $accent-color: #9bb537;
 $stars-color: #eea10c;
 $secondary-background-color: #161616;
@@ -14,7 +14,7 @@ html {
   body {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    background-color: #fff;
+    // background-color: #fff;
   }
 }
 

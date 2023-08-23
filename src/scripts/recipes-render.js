@@ -119,21 +119,30 @@ function renderRecipeCard(recipeData) {
 
 /////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+import _ from 'lodash';
+
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 import { pagination } from './pagination';
 
-document.addEventListener('DOMContentLoaded', function () {
-  new SlimSelect({
-    select: '#time',
-    settings: {
-      placeholderText: '0 min',
-    },
-  });
+new SlimSelect({
+  select: '#time',
+  settings: {
+    placeholderText: '0 min',
+  },
 });
 
-const ingredientsSelect = document.querySelector('#ingredients');
+const searchInput = document.querySelector('#searchInput');
+const timeSelect = document.querySelector('#time');
 const areaSelect = document.querySelector('#area');
+const ingredientsSelect = document.querySelector('#ingredients');
+
+searchInput.addEventListener(
+  'input',
+  _.debounce(event => filterByParameter(event, 'title'), 300)
+);
+areaSelect.addEventListener('change', event => filterByParameter(event, 'area'));
+ingredientsSelect.addEventListener('change', event => filterByParameter(event, 'ingredient'));
 
 // getTime();
 // async function getTime() {
@@ -151,7 +160,7 @@ async function getAreas() {
     const sortedAreaData = sortByAlphabet(areasData, 'name');
     // console.log(sortedAreaData);
 
-    const elements = sortedAreaData.map(element => renderIngredientsSelectOptions(element._id, element.name)).join('');
+    const elements = sortedAreaData.map(element => renderSelectOptions(element._id, element.name)).join('');
 
     areaSelect.insertAdjacentHTML('afterbegin', elements);
 
@@ -171,9 +180,7 @@ async function getIngredients() {
     const ingredientsData = await API.fetchIngredients();
     const sortedIngredientsData = sortByAlphabet(ingredientsData, 'name');
 
-    const elements = sortedIngredientsData
-      .map(element => renderIngredientsSelectOptions(element._id, element.name))
-      .join('');
+    const elements = sortedIngredientsData.map(element => renderSelectOptions(element._id, element.name)).join('');
 
     ingredientsSelect.insertAdjacentHTML('afterbegin', elements);
 
@@ -188,41 +195,31 @@ async function getIngredients() {
   }
 }
 
-function renderIngredientsSelectOptions(value, name) {
-  return `<option value="${value}">${name}</option>`;
-}
-
-function sortByAlphabet(data, key) {
-  return data.sort((a, b) => a[key].localeCompare(b[key]));
-}
-
-ingredientsSelect.addEventListener('change', filterByIngredient);
-
-async function filterByIngredient(event) {
-  const selectedIngredient = event.target.value;
-  console.log('Selected ingredient:', selectedIngredient);
-  console.log(selectedIngredient.includes('640c2dd963a319ea671e367e')); // true
-
+async function filterByParameter(event, parameterName) {
   try {
-    const recipesData = await API.fetchRecipes();
-    const recipeResult = recipesData.results;
-    console.log('Recipe results:', recipeResult);
+    let selectedValue = '';
 
-    const filteredData = recipeResult.filter(result => {
-      const ingredientIds = result.ingredients.map(ingredient => ingredient.id);
-      return ingredientIds.includes(selectedIngredient);
-    });
-
-    console.log('Filtered data:', filteredData);
-
-    renderFilteredRecipes(filteredData);
-
-    if (filteredData.length === 0) {
-      Notiflix.Notify.failure('No matcher were found');
+    if (event.target.id === 'area') {
+      selectedValue = event.target.options[event.target.selectedIndex].textContent;
+    } else if (event.target.id === 'ingredients') {
+      selectedValue = event.target.value;
     } else {
-      Notiflix.Notify.success(`We found ${filteredData.length} matches!`);
+      selectedValue = event.target.value.trim();
     }
+    console.log(selectedValue);
+
+    const filterOptions = { [parameterName]: selectedValue };
+    const response = await API.fetchRecipes(filterOptions);
+    console.log(response);
+    const recipeResults = response.results;
+
+    renderFilteredRecipes(recipeResults);
+
+    showFetchingResult(recipeResults);
   } catch (error) {
+    console.error('Error fetching data:', error);
+
+    Notiflix.Notify.failure('Invalid input. Please try another one!');
     throw error;
   }
 }
@@ -232,3 +229,51 @@ function renderFilteredRecipes(data) {
   recipesList.innerHTML = '';
   recipesList.append(...elements);
 }
+
+function renderSelectOptions(value, name) {
+  return `<option value="${value}">${name}</option>`;
+}
+
+function sortByAlphabet(data, key) {
+  return data.sort((a, b) => a[key].localeCompare(b[key]));
+}
+
+function showFetchingResult(data) {
+  if (data.length === 0) {
+    Notiflix.Notify.failure('No matcher were found');
+  } else {
+    Notiflix.Notify.success(`We found ${data.length} matches!`);
+  }
+}
+
+/////////// allFilters ///////////////////////////////////////////
+
+// const allFilters = document.querySelector('.filters');
+// console.log(allFilters);
+
+// allFilters.addEventListener('change', event => {
+//   console.log(event);
+//   console.log('asasd');
+// });
+
+// async function filterAll(event) {
+//   const selectElement = event.target;
+
+//   if (selectElement.tagName !== 'SELECT') {
+//     return;
+//   }
+
+//   const selectedValue = selectElement.value;
+//   const selectedText = selectElement.options[selectElement.selectedIndex].textContent;
+
+//   if (selectElement.id === 'time') {
+//     // id="time"
+//     console.log('idi');
+//   } else if (selectElement.id === 'area') {
+//     // id="area"
+//     console.log('area');
+//   } else if (selectElement.id === 'ingredients') {
+//     // id="ingredients"
+//     console.log('ingredients');
+//   }
+// }

@@ -10,7 +10,7 @@ export default class TastyTreatsAPI {
         };
         this.currentPage = 1;
     }
-    // { title, category, area, ingredients, time }
+    // { page, title, category, area, ingredient, time }
     requestJoin(data) {
         let query = "limit=9";
         for (const [key, value] of Object.entries(data)) {

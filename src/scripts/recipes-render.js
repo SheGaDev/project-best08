@@ -1,22 +1,32 @@
+import { pagination } from './pagination';
 import { onClickOpenRecipeModal } from './modal-card';
 const { API } = require('@/lib/api');
+import Notiflix from 'notiflix';
 
 const recipesList = document.querySelector('.recipe-cards_wrapper');
+const cardsWrapper = document.querySelector('.filters-and-cards__wrapper');
 
 populateRecipesList();
 
-async function populateRecipesList() {
+export async function populateRecipesList(data) {
   try {
-    const recipesData = await API.fetchRecipes();
+    const recipesData = await API.fetchRecipes(data);
     const recipeResult = recipesData.results;
-
+    pagination.setItemsPerPage(recipeResult.length);
     const elements = recipeResult.map(renderRecipeCard);
-
+    recipesList.innerHTML = '';
     recipesList.append(...elements);
     //add Listener for open modal recipe window
     const recipeClick = document.querySelector('.recipe-cards_wrapper');
     recipeClick.addEventListener('click', onClickOpenRecipeModal);
   } catch (error) {
+    recipesList.innerHTML = `<div class="error-msg-title">Oops...</div>
+      <div class="error-msg">An error occured, please try to reload the page</div>`;
+    recipesList.style.flexDirection = 'column';
+    // recipesList.style.marginTop = '180px';
+
+    Notiflix.Notify.failure('There was an error while loading the recipes');
+
     console.error('Error fetching recipes;', error);
     throw error;
   }
@@ -43,21 +53,22 @@ function renderRecipeCard(recipeData) {
   const svgHeart = document.createElement('span');
   svgHeart.classList.add('favourite-heart');
   svgHeart.innerHTML = `
-        <svg
-      width="22"
-      height="22"
-      viewBox="0 0 22 22"
-    >
-      <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
-        d="M10.9937 4.70783C9.16096 2.5652 6.10475 1.98884 3.80845 3.95085C1.51215 5.91285 1.18887 9.19323 2.99216 11.5137C4.49148 13.443 9.02894 17.5121 10.5161 18.8291C10.6825 18.9764 10.7656 19.0501 10.8627 19.0791C10.9474 19.1043 11.04 19.1043 11.1247 19.0791C11.2218 19.0501 11.305 18.9764 11.4713 18.8291C12.9585 17.5121 17.4959 13.443 18.9952 11.5137C20.7985 9.19323 20.5147 5.89221 18.179 3.95085C15.8432 2.00948 12.8264 2.5652 10.9937 4.70783Z"
-        stroke="#F8F8F8"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>`;
+                        <svg
+                          class="heart-icon"
+                          width="22px"
+                          height="22px"
+                          viewBox="0 0 22 22"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M10.9937 4.70783C9.16096 2.5652 6.10475 1.98884 3.80845 3.95085C1.51215 5.91285 1.18887 9.19323 2.99216 11.5137C4.49148 13.443 9.02894 17.5121 10.5161 18.8291C10.6825 18.9764 10.7656 19.0501 10.8627 19.0791C10.9474 19.1043 11.04 19.1043 11.1247 19.0791C11.2218 19.0501 11.305 18.9764 11.4713 18.8291C12.9585 17.5121 17.4959 13.443 18.9952 11.5137C20.7985 9.19323 20.5147 5.89221 18.179 3.95085C15.8432 2.00948 12.8264 2.5652 10.9937 4.70783Z"
+                            stroke="#F8F8F8"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>`;
   recipeCard.appendChild(svgHeart);
 
   ///////////////////////////////////////////////////////
@@ -86,14 +97,14 @@ function renderRecipeCard(recipeData) {
     starElement.classList.add('star');
     starElement.innerHTML = `
                     <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-    >
-      <path
-        d="M6.04894 1.42705C6.3483 0.505742 7.6517 0.505741 7.95106 1.42705L8.79611 4.02786C8.92999 4.43989 9.31394 4.71885 9.74717 4.71885H12.4818C13.4505 4.71885 13.8533 5.95846 13.0696 6.52786L10.8572 8.13525C10.5067 8.3899 10.3601 8.84127 10.494 9.25329L11.339 11.8541C11.6384 12.7754 10.5839 13.5415 9.80017 12.9721L7.58779 11.3647C7.2373 11.1101 6.7627 11.1101 6.41222 11.3647L4.19983 12.9721C3.41612 13.5415 2.36164 12.7754 2.66099 11.8541L3.50604 9.25329C3.63992 8.84127 3.49326 8.3899 3.14277 8.13525L0.930391 6.52787C0.146677 5.95846 0.549452 4.71885 1.51818 4.71885H4.25283C4.68606 4.71885 5.07001 4.43989 5.20389 4.02786L6.04894 1.42705Z"
-      />
-    </svg>`;
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        d="M6.04894 1.42705C6.3483 0.505742 7.6517 0.505741 7.95106 1.42705L8.79611 4.02786C8.92999 4.43989 9.31394 4.71885 9.74717 4.71885H12.4818C13.4505 4.71885 13.8533 5.95846 13.0696 6.52786L10.8572 8.13525C10.5067 8.3899 10.3601 8.84127 10.494 9.25329L11.339 11.8541C11.6384 12.7754 10.5839 13.5415 9.80017 12.9721L7.58779 11.3647C7.2373 11.1101 6.7627 11.1101 6.41222 11.3647L4.19983 12.9721C3.41612 13.5415 2.36164 12.7754 2.66099 11.8541L3.50604 9.25329C3.63992 8.84127 3.49326 8.3899 3.14277 8.13525L0.930391 6.52787C0.146677 5.95846 0.549452 4.71885 1.51818 4.71885H4.25283C4.68606 4.71885 5.07001 4.43989 5.20389 4.02786L6.04894 1.42705Z"
+                      />
+                    </svg>`;
 
     if (i < numStars) {
       starElement.classList.add('filled');
@@ -116,17 +127,58 @@ function renderRecipeCard(recipeData) {
 ////////////////////////////////////////////////////////////////////////////////
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
+import { pagination } from './pagination';
 
 document.addEventListener('DOMContentLoaded', function () {
   new SlimSelect({
     select: '#time',
+    settings: {
+      placeholderText: '0 min',
+    },
   });
 
   new SlimSelect({
     select: '#area',
-  });
-
-  new SlimSelect({
-    select: '#ingredients',
+    settings: {
+      placeholderText: 'Region',
+    },
   });
 });
+
+const ingredientsSelect = document.querySelector('#ingredients');
+
+getIngredients();
+
+async function getIngredients() {
+  try {
+    const ingredientsData = await API.fetchIngredients();
+
+    const sortedIngredientsData = ingredientsData.sort((a, b) => a.name.localeCompare(b.name));
+
+    console.log(sortedIngredientsData);
+
+    const elements = sortedIngredientsData.map(renderIngredientsSelectOptions).join('');
+
+    ingredientsSelect.insertAdjacentHTML('afterbegin', elements);
+
+    new SlimSelect({
+      select: '#ingredients',
+      settings: {
+        placeholderText: 'Product',
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
+function renderIngredientsSelectOptions(ingredient) {
+  return `<option value="${ingredient.name}">${ingredient.name}</option>`;
+}
+
+// const timeSelect = document.querySelector('#time');
+// console.log(timeSelect);
+
+// timeSelect.addEventListener('change', event => {
+//   console.log(event.target.value);
+// });

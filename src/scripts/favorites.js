@@ -1,7 +1,7 @@
 // import { refs } from "@api/refs";
 import { getStorageFavorites, getCategories, getFavoriteItems, asyncToggleFavoriteItem } from "../lib/utils/local-storage-service";
 import { renderRecipeCard } from "./recipes-render";
-import { onClickOpenRecipeModal } from '../../scripts/modal-card';
+import { onClickOpenRecipeModal } from './modal-card';
 
 const refs = {
     favoriteHeroSection: document.querySelector(".hero-favorites-section"),

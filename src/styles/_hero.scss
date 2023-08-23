@@ -1,6 +1,7 @@
 @use "./globals";
 @import '../../node_modules/swiper/swiper-bundle.css';
 
+
 .swiper{
     --swiper-pagination-color: #9BB537;
     --swiper-pagination-bullet-inactive-color: #050505;
@@ -20,6 +21,9 @@
   
     padding-top: 70px;
 }
+
+
+
 .hero_section_content{
 width: 446px;
 margin-right: 0;
@@ -52,6 +56,7 @@ margin-right: 0;
     border-radius: 15px;
     background: transparent;
     border: 1 solid $accent-color;
+    transition: background-color .25s cubic-bezier(.4, 0, .2, 1), border .25s cubic-bezier(.4, 0, .2, 1), color .25s cubic-bezier(.4, 0, .2, 1);
    
 }
 .hero_button a {color: $primery-text-color;
@@ -169,7 +174,8 @@ opacity: 0.2;}
         width: 375px;
         overflow: hidden;
         flex-direction: column;
-        margin-bottom: 80px;
+        padding-top:64px ;
+        padding-bottom: 80px;
     }
     .swiper{
         position: relative;
@@ -289,7 +295,8 @@ opacity: 0.2;}
         width: 768px;
         overflow: hidden;
         flex-direction: column;
-        margin-bottom: 100px;
+        padding-top: 65px;
+        padding-bottom: 100px;
     }
     .hero_section_content{
         width: 446px;
@@ -371,10 +378,12 @@ opacity: 0.2;}
     
       
     .hero{
+        display: flex;
         width: 1280px;
         flex-direction: row;
         padding-top: 80px;
-        margin-bottom: 100px;
+        padding-bottom: 100px;
+        padding-top: 60px;
     }
     
     .hero_section_content{

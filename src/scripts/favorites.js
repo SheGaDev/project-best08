@@ -3,8 +3,6 @@ import { getStorageFavorites, getCategories, getFavoriteItems, asyncToggleFavori
 import { renderRecipeCard } from "./recipes-render";
 import { onClickOpenRecipeModal } from './modal-card';
 
-// -------------- //
-
 const refs = {
     favoriteHeroSection: document.querySelector(".hero-favorites-section"),
     emptyFavoriteSection: document.querySelector(".empty-favorite-list-section"),

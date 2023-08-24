@@ -1,10 +1,14 @@
 const root = document.querySelector(':root');
-const checkbox = document.querySelector('.js-toggle-btn');
+const checkboxes = document.querySelectorAll('.js-toggle-btn');
 
-checkbox.addEventListener('change',() => {
-    root.classList.toggle('dark'); 
-})
+checkboxes.forEach(checkbox => checkbox.addEventListener('change',(event) => {
+    if(event.target.checked){
+        checkboxes.forEach((checkbox) => { checkbox.checked = true});
+        root.classList.add('dark'); 
 
-console.log(root);
-console.log(checkbox);
-console.log(checkbox.checked)
+    }
+    else{
+        checkboxes.forEach((checkbox) => { checkbox.checked = false});
+        root.classList.remove('dark'); 
+    }
+}))

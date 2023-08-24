@@ -12,7 +12,9 @@ const refs = {
     
     favoriteCategoriesList: document.querySelector(".favorite-categories-box"),
     favoriteCategoryBtn: document.querySelector(".favorite-categories-btn"),
+    // favoriteCardsContainer: document.querySelector(".favorite-cards-container"),
     favoriteCardsList: document.querySelector(".favorite-cards-list"),
+    favoriteCardsBox: document.querySelector(".favorite-cards-box"),
 }
 
 // let favoriteItems = JSON.parse(localStorage.getItem('favorites'));
@@ -27,22 +29,12 @@ if (favoriteItems && favoriteItems.length !== 0) {
 }
 
 let favoriteCategoriesArray = getCategories(favoriteItems);
-let selectedCategory = '';
-// let page = 1;
-localStorage.setItem('currentCategory', selectedCategory);
-
-let currentFavoriteCategory = localStorage.getItem('currentCategory', selectedCategory);
-console.log(currentFavoriteCategory);
-
-if (currentFavoriteCategory !== 'All') {
-    favoriteItems = getFavoriteItems({ category: `${currentFavoriteCategory}` });          // object or only selectedCategory ??????? //
-} else {
-    favoriteItems;
-}
-
 console.log(favoriteCategoriesArray);
 renderFavoriteCategories(favoriteCategoriesArray);
+console.log(favoriteItems);
 renderFavoriteCards(favoriteItems);
+// const favoriteCardClick = document.querySelector(".favorite-cards-box");
+// favoriteCardClick.addEventListener('click', onClickOpenRecipeModal);
 
 function renderFavoriteCategories(array) {
     refs.favoriteCategoriesList.innerHTML = `<button type="button" class="favorite-categories-btn">All categories</button>`;
@@ -52,16 +44,22 @@ function renderFavoriteCategories(array) {
     }
 }
 
-function renderFavoriteCards(favoriteItems) {
-    refs.favoriteCardsList.innerHTML = '';
-    const elements = favoriteItems.map(renderRecipeCard);
-refs.favoriteCardsList.append(...elements);
+function renderFavoriteCards(array) {
+    refs.favoriteCardsBox.innerHTML = '';
+    
+    for (let i = 0; i < array.length; i += 1) { 
+        let card = renderRecipeCard(array[i]);
+        refs.favoriteCardsBox.appendChild(card);
+        console.log(card);
     }
 
+    const favoriteCardClick = document.querySelector(".favorite-cards-box");
+    favoriteCardClick.addEventListener('click', onClickOpenRecipeModal);
+}
 
 // ------------- //
 
-refs.favoriteCardsList.addEventListener('click', onClickOpenRecipeModal);
+
 refs.favoriteCardsList.addEventListener('click', onFavoriteCardClick);
 
 refs.favoriteCategoriesList.addEventListener('click', createFilteredCards);
@@ -71,29 +69,30 @@ async function onFavoriteCardClick(evt) {
     if (evt.target.className !== 'favourite-heart') {
         return;
     }
-    let recipeId = evt.target.closest('[_id]');           // check id !!!!! //
+    let recipeId = evt.currentTarget.closest('[recipe-id]');           
+    // console.log(recipeId);                                  // check id !!!!! //
     await asyncToggleFavoriteItem(recipeId);
     
-    renderFavoriteCategories();      // async ???????????? //
-    renderFavoriteCards();           // async ???????????? //
+    renderFavoriteCategories();     
+    renderFavoriteCards();          
+
+    // evt.stopPropagation();
 }
 
 function createFilteredCards(evt) {
     evt.preventDefault();
 
-    // let selectedCategory = evt.target.value;
-    selectedCategory = evt.target.value;
+    selectedCategory = evt.target.textContent;
+    console.log(selectedCategory);
 
     if (selectedCategory === 'All categories') {
         selectedCategory = 'All';
     }
-    // localStorage.setItem('currentCategory', selectedCategory);
 
-    let selectedCards = getFavoriteItems(selectedCategory);          // object or only selectedCategory ??????? //
-    renderFavoriteCards(selectedCards.results);
-
+    let selectedCards = getFavoriteItems({category: `${selectedCategory}`}).results;          // object or only selectedCategory ??????? //
+    console.log(selectedCards);
+    renderFavoriteCards(selectedCards);
+    
 // refs.favoriteCardsList.addEventListener('click', onFavoriteCardClick);          // necessary ????? //
-
 // refs.favoriteCategoriesList.addEventListener('click', createFilteredCards);    // necessary ????? //
-
 }

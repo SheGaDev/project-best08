@@ -57,6 +57,7 @@ function renderFavoriteCards(array) {
     favoriteCardClick.addEventListener('click', onClickOpenRecipeModal);
 }
 
+
 // ------------- //
 
 

@@ -109,20 +109,55 @@ div.popular-wrapper > ul > li > a > div > p {
 .reset-button{
     color: var( --primery-text-color-transparent-dark);
 }
+
 .search-input,
 .ss-values, 
 .ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected,
 .ss-content .ss-list .ss-option:hover,
 p.text, 
 .elips, 
-.empty-favorite-list {
+.empty-favorite-list,
+div.categories-wrapper > div.popular-wrapper > ul > li> a > div, 
+.reset-button:hover {
     color: var(--primery-text-color);
 }
 
 //Модальное окно с рецептом
-.item-tags-style {
-    color: #050505;
+.modal-recipe-container,
+.close-button {
+    background-color: var(--filters-background-color);
 }
+.modal-card-name,
+.close-button {
+    color: var(--primery-text-color)
+}
+.close-button{
+    stroke: var(--hero-pic-backround);
+}
+.item-tags-style,
+.ingredients-name  {
+    color: var(--primery-text-color);
+}
+.ingredients-measure,
+.modal-card-rating-value {
+    color: var(--primery-text-color-transparent-dark);
+}
+
+.modal-card-ingredients-item {
+    border-bottom-color: var(--primery-text-color-transparent);
+}
+
+.item-tags-style {
+    border-color: var(--border-color);
+}
+.star {
+fill: var( --border-color);
+
+}
+.modal-card-about-descr {
+    color: var(--primery-text-color-transparent-deep);
+}
+
 .modal-card-btn:hover {
     color: #050505;
     background-color: #9bb537

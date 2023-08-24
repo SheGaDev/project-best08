@@ -28,7 +28,7 @@
     "notiflix": "^3.2.6",
     "readmore-js": "^2.2.1",
     "slim-select": "^2.5.0",
-    "swiper": "^9.4.1",
+    "swiper": "^10.2.0",
     "tui-pagination": "^3.4.1"
   },
   "devDependencies": {

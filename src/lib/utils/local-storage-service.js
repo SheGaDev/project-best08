@@ -113,5 +113,7 @@ export {
     asyncToggleFavoriteItem,
     toggleFavoriteItem,
     getFavoriteItems,
-    getFavoriteItem
+    getFavoriteItem,
+    getCategories,
+    getStorageFavorites
 }

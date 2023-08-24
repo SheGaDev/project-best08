@@ -8,4 +8,3 @@ import './mob-menu';
 import './to_top';
 import './pagination.js';
 import './current-pg';
-

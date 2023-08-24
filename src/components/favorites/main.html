@@ -2,7 +2,7 @@
   <include src="./components/favorites/hero.html"></include>
 
   <section class="empty-favorite-list-section">
-    <div class="empty-favorite-list-container container">
+    <div class="empty-favorite-list-container">
       <div class="favorite-icon-box">
         <img class="favorite-icon" src="./images/svgs/favorites.svg" alt="cooking-icon" />
       </div>
@@ -12,37 +12,19 @@
     </div>
   </section>
 
-  <section class="favorite-categories-section">
-    <div class="favorite-categories-container container">
+  <section class="favorite-categories-section is-hidden">
+    <div class="favorite-categories-container">
       <div class="favorite-categories-box">
-      
-        <!-- <button type="button" class="favorite-categories-btn">All categories</button>
-        <button type="button" class="favorite-categories-btn">All</button>
-        <button type="button" class="favorite-categories-btn">Cakes</button>
-        <button type="button" class="favorite-categories-btn">Breakfast</button>
-        <button type="button" class="favorite-categories-btn">All categories</button>
-        <button type="button" class="favorite-categories-btn">All categories</button>
-        <button type="button" class="favorite-categories-btn">All categories</button>
-        <button type="button" class="favorite-categories-btn">All categories</button>
-        <button type="button" class="favorite-categories-btn">All categories</button>
-        <button type="button" class="favorite-categories-btn">All categories</button>
-        <button type="button" class="favorite-categories-btn">All categories</button> -->
-
       </div>
     </div>
   </section>
 
   <section class="favorite-cards-section is-hidden">
-    <div class="favorite-cards-container container">
+    <div class="favorite-cards-container">
       <ul class="favorite-cards-list">
-
-        <!-- <li class="box"></li>
-        <li class="box"></li>
-        <li class="box"></li>
-        <li class="box"></li>
-        <li class="box"></li> -->
-
+        <div class="favorite-cards-box"></div>
       </ul>
     </div>
+    <include src="./components/favorites/pagination-fav.html"></include>
   </section>
 </main>

@@ -42,7 +42,7 @@ export async function populateRecipesList(data) {
   }
 }
 
-function renderRecipeCard(recipeData) {
+export function renderRecipeCard(recipeData) {
   const recipeCard = document.createElement('li');
   recipeCard.classList.add('recipe-card');
   recipeCard.style.backgroundImage = `linear-gradient(

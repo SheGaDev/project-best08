@@ -4,20 +4,16 @@
     display: none;
 }
 
-// .box {
-//     width: 335px;
-//     height: 335px;
-//     background-color: cornflowerblue;
-// }
-
 .empty-favorite-list-section {
-    padding-top: 276.5px;
+    margin-top: -284px;
 }
 
 .empty-favorite-list-container, .favorite-categories-container, .favorite-cards-container {
-    min-width: 200px;
+    width: 375px;
     margin-left: auto;
     margin-right: auto;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .empty-favorite-list-container {
@@ -85,26 +81,16 @@
     padding-bottom: 80px;
 }
 
-.favorite-cards-list {
+.favorite-cards-box {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-
-@media screen and (min-width: 375px) {
-    .empty-favorite-list-container, .favorite-categories-container, .favorite-cards-container {
-        width: 375px;
-    }
-}
-
 @media screen and (min-width: 768px) {
     .empty-favorite-list-section {
+        margin-top: 0;
         padding-top: 64px;
-    }
-
-    .empty-favorite-list-container, .favorite-categories-container, .favorite-cards-container {
-        width: 768px;
     }
 
     .empty-favorite-list-container {
@@ -121,10 +107,20 @@
         width: 97px;
         height: 83px;
     }
+    
+    .empty-favorite-list-container, .favorite-categories-container, .favorite-cards-container {
+        width: 768px;
+        padding-right: 32px;
+        padding-left: 32px;
+    }
 
     .favorite-categories-section {
         padding-top: 64px;
         padding-bottom: 32px;
+    }
+
+    .favorite-categories-container {
+        padding-right: 0;
     }
 
     .favorite-categories-btn {
@@ -135,35 +131,41 @@
         padding-bottom: 182px;
     }
 
-    .favorite-cards-list {
+    .favorite-cards-box {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 16px;
     }
 
-    // .box {
-    //     width: 224px;
-    //     height: 244px;
-    // }
+    .favorite-cards-box > * {
+        width: 224px;
+        height: 244px;
+    }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
     .empty-favorite-list-container, .favorite-categories-container, .favorite-cards-container {
-        width: 1200px;
+        width: 1280px;
+        padding-right: 100px;
+        padding-left: 100px;
+    }
+
+    .favorite-categories-container {
+        padding-right: 0;
     }
 
     .favorite-cards-section {
         padding-bottom: 100px;
     }
 
-    .favorite-cards-list {
+    .favorite-cards-box {
         column-gap: 16px;
         row-gap: 32px;
     }
 
-    // .box {
-    //     width: 258px;
-    //     height: 287px;
-    // }
+    .favorite-cards-box > * {
+        width: 258px;
+        height: 287px;
+    }
 }

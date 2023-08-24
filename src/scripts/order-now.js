@@ -13,4 +13,5 @@ function onBgClick(e) {
 }
 
 refs.openModalBtn.addEventListener('click', toggleModal);
+refs.heroModalOpen.addEventListener('click', toggleModal);
 refs.closeModalBtn.addEventListener('click', toggleModal);

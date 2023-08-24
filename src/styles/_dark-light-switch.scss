@@ -7,28 +7,43 @@
     --primery-text-color-transparent-light: rgba(5, 5, 5, 0.18);
     --accent-color: #9bb537;
     --secondary-text-color: #ffffff;
+    --filters-background-color:#ffffff;
     --border-color: rgba(5, 5, 5, 0.2);
     
     color-scheme: light;
 }
 
-body, .header-logo, .header-link {
+body, 
+.header-logo, 
+.header-link {
     background-color: var(--primery-background-color);
     color: var(--primery-text-color);
 }
 
-.menu-open-btn, .buy-btn {
+.menu-open-btn, 
+.buy-btn {
     stroke: var(--primery-text-color);
 }
+
 .all-categories-btn, 
 .filters p, 
-.search-input, .search-input::placeholder {
+.search-input, 
+.search-input::placeholder {
     color: var( --primery-text-color-transparent-dark);
     border-color: var(--border-color);
     background: transparent;
 }
 
-.search-input, .time-select, .area-select, .ingredients-select{
+.search-input:focus-visible {
+    outline-color: var(--border-color);
+    outline-width: 1px;
+}
+
+.search-input, 
+// .search-input:focus-visible,!!!!!!!!!!!!!!!!!!!!
+.time-select, 
+.area-select, 
+.ingredients-select{
     color: var( --primery-text-color-transparent-dark);
     border-color: var(--border-color);
     background: transparent;
@@ -38,6 +53,11 @@ body, .header-logo, .header-link {
 
     }
 }
+.ss-content.ss-open-below{
+    background-color: var( --filters-background-color);
+}
+
+
 div.categories-wrapper > div:nth-child(1) > ul > li:nth-child(1) > a {
    color: var(--primery-text-color-transparent);
 
@@ -49,15 +69,15 @@ div.categories-wrapper > div:nth-child(1) > ul > li:nth-child(1) > a {
 div.popular-wrapper > ul > li > a > div > p {
     color: var(--primery-text-color-transparent-deep);
 }
+
 .tui-pagination .tui-page-btn {
     border-color: var(--border-color); 
 }
 
-
-
-
-
-.categorie-items, .area-select.ss-main, .ss-placeholder {
+.categorie-items, 
+.area-select.ss-main, 
+.ss-placeholder, 
+.ss-content .ss-list .ss-option {
     color: var(--primery-text-color-transparent);
 }
 
@@ -67,7 +87,13 @@ div.popular-wrapper > ul > li > a > div > p {
 .reset-button{
     color: var( --primery-text-color-transparent-dark);
 }
-.search-input, .ss-values, p.text, .elips {
+.search-input,
+.ss-values, 
+.ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected,
+.ss-content .ss-list .ss-option:hover,
+p.text, 
+.elips, 
+.empty-favorite-list {
     color: var(--primery-text-color);
 }
 
@@ -83,6 +109,7 @@ div.popular-wrapper > ul > li > a > div > p {
     --primery-text-color-transparent-light: rgba(255, 255, 255, 0.18);
     --accent-color: #9bb537;
     --secondary-text-color: #ffffff; 
+    --filters-background-color:#050505;
     --border-color: rgba(255, 255, 255, 0.2);
     color-scheme: dark; 
 }

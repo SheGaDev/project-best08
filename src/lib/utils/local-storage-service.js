@@ -43,18 +43,22 @@ function toggleFavoriteItem(recipe) {
  * { page: default = 1, category: default = "All" }
  * @returns 
  */
-function getFavoriteItems({ page = 1, category = "All" }) {
-    if (typeof page !== "number") throw new Error("This is not number");
-    if (category !== "All") checkCategories(category);
+function getFavoriteItems(options = {}) {
+    options.page = options?.page ?? 1;
+    options.category = options?.category ?? "All";
+    if (typeof options.page !== "number") throw new Error("This is not number");
+    if (options.category !== "All") checkCategories(options.category);
     const items = getStorageFavorites();
-    const filtered = category === "All" ? items : items.filter(item => item.category === category);
+    const filtered = options.category === "All" ? items : items.filter(item => item.category === options.category);
     const categories = getCategories(items);
     const perPage = 12;
+    const totalPages = Math.ceil(filtered.length / perPage);
+    if(totalPages < options.page) options.page = 1;
     const data = {
-        page,
-        totalPage: Math.ceil(filtered.length / perPage),
+        page: options.page,
+        totalPages,
         categories,
-        results: filtered.slice((page - 1) * perPage, (page - 1) * perPage + perPage)
+        results: filtered.slice((options.page - 1) * perPage, (options.page - 1) * perPage + perPage)
     }
     return data;
 }

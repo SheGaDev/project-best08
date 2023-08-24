@@ -83,9 +83,8 @@ body,
       background: var(--primery-text-color-transparent-light);
     }
 
-div.categories-wrapper > div:nth-child(1) > ul > li:nth-child(1) > a {
+div.categories-wrapper > div> ul > li > a {
    color: var(--primery-text-color-transparent);
-
 }
 
 div.popular-wrapper > ul > li > a > div > p {

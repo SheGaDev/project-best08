@@ -11,6 +11,9 @@ let currentRecipe = {};
 async function onClickOpenRecipeModal(e) {
   e.preventDefault();
   const elemTarget = e.target.closest('[recipe-id]');
+  if (elemTarget === null) {
+    return;
+  }
   const idRecipe = elemTarget.getAttribute('recipe-id');
   let isFavorite = getFavoriteItem(idRecipe) !== undefined;
 
@@ -122,7 +125,8 @@ function createModalRecipe(data, isFavorite) {
 </div>`;
 }
 function createMarkupForTags(arr) {
-  const markupForTags = arr
+  const processedArr = arr.filter(elem => elem !== '');
+  const markupForTags = processedArr
     .map(
       tag =>
         ` <li class="item-tags">

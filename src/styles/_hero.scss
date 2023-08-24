@@ -1,25 +1,32 @@
 @use "./globals";
 @import '../../node_modules/swiper/swiper-bundle.css';
 
-p{margin-right: 0;}
+
 .swiper{
-    --swiper-pagination-color: gray;
+    --swiper-pagination-color: #9BB537;
+    --swiper-pagination-bullet-inactive-color: #050505;
     --swiper-pagination-bullet-size: 10px;
-
-    min-width:  100%;
-    height: 468px; 
-
+    --swiper-pagination-left: auto;
+  --swiper-pagination-right: 8px;
+  --swiper-pagination-bottom: 2px;
+  --swiper-pagination-top: auto;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
+    max-width:  870px;
+    max-height: 480px;
   }
-  
+ 
 .hero{
     display: flex;
     flex-direction: row;
-    padding-right: 0;
+  
+    padding-top: 70px;
 }
+
+
+
 .hero_section_content{
 width: 446px;
-padding-top: 40px;
-margin-right: 32px;
+margin-right: 0;
 }
 .hero_title{
     font-family: inherit;
@@ -28,15 +35,15 @@ margin-right: 32px;
     margin-bottom: 16px;
 
 }
-.hero_title_style{
+.hero_title_style {
     font-style: italic;
-    color: $accent-color;
+  color: $accent-color;
 }
+
 .hero_text{
-    min-width: 408px;
+    min-width: 335px;
     font-family: inherit;
     font-weight: 400;
-
     margin-bottom: 32px;
 }
 .hero_button{
@@ -48,7 +55,7 @@ margin-right: 32px;
     border-radius: 15px;
     background: transparent;
     border: 1 solid $accent-color;
-   
+    transition: background-color .25s cubic-bezier(.4, 0, .2, 1), border .25s cubic-bezier(.4, 0, .2, 1), color .25s cubic-bezier(.4, 0, .2, 1);
 }
 .hero_button a {color: $primery-text-color;
     text-decoration: none;
@@ -62,8 +69,6 @@ background-color: $accent-color;
 
 }
 
-
-
 .hero_section_slider{
     display: flex;
     flex-direction: row;
@@ -71,17 +76,20 @@ background-color: $accent-color;
 
 }
 .swiper-slide{
+    width: 870px;
+    height: 468px;
     display: flex;
     flex-direction: row;
     gap: 16px;
-    
+    overflow: hidden;
+
 }
 
 .slider_card_cheef {
     position: relative;
     display: flex;
-    // min-width: 136px;
-    // height: 440px;
+    width: 136px;
+    height: 440px;
     border-radius: 15px;
     margin-bottom: 20px;
     background-color: $primery-text-color;
@@ -94,8 +102,8 @@ background-color: $accent-color;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // min-width: 350px;
-    // height: 440px;
+    width: 350px;
+    height: 440px;
     background-color: $primery-text-color;
     border-radius: 15px;
     overflow: hidden;
@@ -106,8 +114,8 @@ background-color: $accent-color;
 .slider_card_dish_view{
    position: relative;
     display: flex;
-    // min-width: 350px;
-    // height: 440px;
+    width: 350px;
+    height: 440px;
     background-color: $primery-text-color;
     border-radius: 15px;
     margin-bottom: 20px;
@@ -123,9 +131,8 @@ background-color: $accent-color;
 
 .slider_card_dish_introduction_photo{
     position: relative;
-    width:250px;
-    margin-bottom: 64px;
-    
+    width:320px;
+    margin-bottom: 32px; 
 }
 
 .slider_card_dish_view_photo{
@@ -155,43 +162,44 @@ text-align: center;
 color:$primery-background-color;
 opacity: 0.2;}
  
-
-
- 
 @media screen and (max-width: 767px){
-    .container{
-        width: 767px;
-    }
-
+    
 
     .hero{
-        
-        display: flex;
+        width: 375px;
+        overflow: hidden;
         flex-direction: column;
+        padding-top:64px ;
+        padding-bottom: 80px;
     }
     .swiper{
-        width: 469px;
-        height: 302px; 
+        position: relative;
+        width: 500px;
+        min-height: 307px; 
+    
+        --swiper-pagination-bullet-size: 8px;
       }
-
-    .hero_section_content{
-        width: 335px;
+      .hero_section_content{
+        width: 375px;
+      
         }
+
         .hero_title_style{
-            --swiper-pagination-bullet-size: 8px;
-            font-weight: 400;
             font-size: 26px;
+            font-weight: 400;
         }
 
         .hero_title{
-            
+           width: 335px;
+            font-family: inherit;
             font-weight: 600;
             font-size: 26px;
             margin-bottom: 14px;
+           
         }
         
         .hero_text{
-            min-width: 335px;
+            width: 335px;
             font-weight: 400;
             font-size: 14px;
             margin-bottom: 28px;
@@ -210,22 +218,19 @@ opacity: 0.2;}
 }
 
 .slider_card_cheef {
-    min-width: 80px;
-    min-height: 280px;
-
+    width: 80px;
+    height: 280px;
 }
 
 .slider_card_dish_introduction{
-    min-width: 200px;
-    min-height: 280px;
-  
+    width: 200px;
+    height: 280px;  
 }
 
 
 .slider_card_dish_view{
-    min-width: 200px;
-    min-height: 280px;
-  
+    width: 200px;
+    height: 280px;  
 }
 
 .slider_card_dish_description_name{
@@ -238,38 +243,32 @@ opacity: 0.2;}
 
 .slider_card_dish_country_area{
    font-size: 12px;
+  }
 
-}
 
 .slider_card_cheef_photo{
     
      min-width:290px;
      right: -110px;
-     bottom: -20px;
-    
- }
+  }
  
  .slider_card_dish_introduction_photo{
-     
-     width:180px;
+     width:200px;
      margin-bottom: 30px;
-     
  }
  
  .slider_card_dish_view_photo{
      margin-left:-50;
      min-width: 300px;
- }}
+ }
+}
 
 
 
+ 
 
-
-
-@media screen and (min-width: 768px) and (max-width: 1200px){
-    .container{
-        max-width: 768px;
-    }
+@media screen and (min-width: 768px) and (max-width: 1280px){
+    
     .swiper{
             
         width: 868px;
@@ -278,13 +277,16 @@ opacity: 0.2;}
       }
 
     .hero{
-        
-        display: flex;
+
+        margin: 0 auto;
+        width: 768px;
+        overflow: hidden;
         flex-direction: column;
+        padding-top: 65px;
+        padding-bottom: 100px;
     }
     .hero_section_content{
         width: 446px;
-        margin-right: 0px;
         }
 
 
@@ -296,14 +298,11 @@ opacity: 0.2;}
             margin-right: 0px;
         }
         .hero_title_style{
-            width: 408px;
-            font-weight: 400;
             font-size: 36px;
         }
         .hero_text{
-            width: 408px;
+            width: 335px;
             font-family: inherit;
-            width: 408px;
             font-weight: 400;
             font-size: 14px;
             margin-bottom: 28px;
@@ -350,38 +349,41 @@ opacity: 0.2;}
 }
 
 .slider_card_dish_introduction_photo{
-    width:250px;
-    margin-bottom: 64px;
-    
+    width:320px;
+    margin-bottom: 32px;
 }
 
 .slider_card_dish_view_photo{
     min-width: 500px;
-    right: -80px;
+    right: -60px;
 }
 
 }
-@media screen and (min-width: 1200px){
-    .container{
-        width: 1200px;
-      }
+@media screen and (min-width: 1280px){
+    
+      
     .hero{
+        display: flex;
+        width: 1280px;
         flex-direction: row;
-        padding-top: 50px;
+        padding-top: 80px;
+        padding-bottom: 100px;
+        padding-top: 60px;
     }
     
     .hero_section_content{
         width: 446px;
-        padding-top: 40px;
-        margin-right: 32px;
+        
         }
         .hero_title{
+            width: 446px;
             font-weight: 600;
             font-size: 36px;
             margin-bottom: 16px;
         }
         
         .hero_text{
+            width: 408px;
             font-weight: 400;
             font-size: 16px;
             margin-bottom: 32px;
@@ -394,11 +396,8 @@ opacity: 0.2;}
         }
         
         .swiper{
-            
-            width: 868px;
+            min-width: 868px;
             height: 500px;
-            
-            
           }
         
         .swiper-slide{
@@ -410,8 +409,7 @@ opacity: 0.2;}
            
             min-width: 136px;
             height: 440px;
-            margin-bottom: 20px;
-        }
+}
         
         .slider_card_dish_introduction{
             
@@ -425,14 +423,15 @@ opacity: 0.2;}
            
             min-width: 350px;
             height: 440px;
-            margin-bottom: 40px;
+
         }
         
         .slider_card_dish_view_photo{
             min-width: 500px;
-            right: -100px;
+
+            right: -60px;
+           
         }
-        
     }
     
     

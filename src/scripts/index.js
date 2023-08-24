@@ -1,3 +1,5 @@
+import './hero/hero';
+import'./hero/swiper-inicialisation';
 import './modal-card-service';
 import './modal-card';
 import './recipes-render';

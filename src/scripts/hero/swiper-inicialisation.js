@@ -33,7 +33,6 @@ clickable:true,
         simulateTouch: false,
         speed: 600
     });
-    
 }
 
 

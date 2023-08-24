@@ -5,15 +5,10 @@
 }
 
 .hero-favorites-section {
-    padding-top: 44.5px;
+    padding-top: 23.5px;
 }
 
 .hero-favorites-container {
-    // min-width: 200px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-left: auto;
-    margin-right: auto;
     display: flex;
     justify-content: center;
 }
@@ -23,13 +18,6 @@
     // margin-right: auto;
 }
 
-
-@media screen and (min-width: 375px) {
-    .hero-favorites-container {
-        // width: 375px;
-    }
-}
-
 @media screen and (max-width: 767px) {
     .hero-favorites-section.unvisible {
         opacity: 0;
@@ -37,15 +25,13 @@
 }
 
 @media screen and (min-width: 768px) {
-    .hero-favorites-container {
-        padding-left: 32px;
-        padding-right: 32px;
+    .hero-favorites-section {
+        padding-top: 22px;
     }
 }
 
 @media screen and (min-width: 1280px) {
-    .hero-favorites-container {
-        padding-left: 100px;
-        padding-right: 100px;
+    .hero-favorites-section {
+        padding-top: 0;
     }
 }

@@ -1,7 +1,8 @@
 // import { refs } from "@api/refs";
-import { getStorageFavorites, getCategories, getFavoriteItems, asyncToggleFavoriteItem } from "../lib/utils/local-storage-service";
+import { getCategories, getFavoriteItems, asyncToggleFavoriteItem } from "../lib/utils/local-storage-service";
 import { renderRecipeCard } from "./recipes-render";
 import { onClickOpenRecipeModal } from './modal-card';
+// import { pagination } from './pagination';
 
 const refs = {
     favoriteHeroSection: document.querySelector(".hero-favorites-section"),
@@ -14,7 +15,9 @@ const refs = {
     favoriteCardsList: document.querySelector(".favorite-cards-list"),
 }
 
-let favoriteItems = getStorageFavorites();
+// let favoriteItems = JSON.parse(localStorage.getItem('favorites'));
+let favoriteItems = getFavoriteItems().results;
+console.log(favoriteItems);
 
 if (favoriteItems && favoriteItems.length !== 0) {
     refs.favoriteHeroSection.classList.remove('unvisible');
@@ -23,45 +26,45 @@ if (favoriteItems && favoriteItems.length !== 0) {
     refs.favoriteCardsSection.classList.remove('is-hidden');
 }
 
+let favoriteCategoriesArray = getCategories(favoriteItems);
+let selectedCategory = '';
+// let page = 1;
+localStorage.setItem('currentCategory', selectedCategory);
+
 let currentFavoriteCategory = localStorage.getItem('currentCategory', selectedCategory);
+console.log(currentFavoriteCategory);
 
 if (currentFavoriteCategory !== 'All') {
-    favoriteItems = getFavoriteItems(currentFavoriteCategory);          // object or only selectedCategory ??????? //
+    favoriteItems = getFavoriteItems({ category: `${currentFavoriteCategory}` });          // object or only selectedCategory ??????? //
 } else {
     favoriteItems;
 }
 
-let favoriteCategoriesArray = getCategories(favoriteItems);
+console.log(favoriteCategoriesArray);
 renderFavoriteCategories(favoriteCategoriesArray);
+renderFavoriteCards(favoriteItems);
 
-let favoriteItemsData = getFavoriteItems();
-renderFavoriteCards(favoriteItemsData.results);
+function renderFavoriteCategories(array) {
+    refs.favoriteCategoriesList.innerHTML = `<button type="button" class="favorite-categories-btn">All categories</button>`;
+    for (let i = 0; i < array.length; i += 1) {
+        let markup = `<button type="button" class="favorite-categories-btn">${array[i]}</button>`;
+        refs.favoriteCategoriesList.insertAdjacentHTML('beforeend', markup);
+    }
+}
+
+function renderFavoriteCards(favoriteItems) {
+    refs.favoriteCardsList.innerHTML = '';
+    const elements = favoriteItems.map(renderRecipeCard);
+refs.favoriteCardsList.append(...elements);
+    }
+
+
+// ------------- //
 
 refs.favoriteCardsList.addEventListener('click', onClickOpenRecipeModal);
 refs.favoriteCardsList.addEventListener('click', onFavoriteCardClick);
 
 refs.favoriteCategoriesList.addEventListener('click', createFilteredCards);
-
-function createFavoriteCategoriesMarkup(array) {
-    array.forEach(element => {
-        return `<button type="button" class="favorite-categories-btn">${element}</button>`;
-    });
-}
-// .join('')
-
-function renderFavoriteCategories(array) {
-    refs.favoriteCategoriesSection.innerHTML = '';
-    // const favoriteCategories = getCategoriesInFavorites(array);
-    const favoriteCategoriesMarkup = createFavoriteCategoriesMarkup(array);
-    refs.favoriteCategoriesSection.insertAdjacentHTML('beforeend', favoriteCategoriesMarkup);
-}
-
-function renderFavoriteCards(array) {
-    refs.favoriteCardsSection.innerHTML = '';
-    array.map((object) => {
-    refs.favoriteCardsSection.insertAdjacentHTML('beforeend', renderRecipeCard(object));
-});
-}
 
 async function onFavoriteCardClick(evt) {
     evt.preventDefault();
@@ -78,14 +81,16 @@ async function onFavoriteCardClick(evt) {
 function createFilteredCards(evt) {
     evt.preventDefault();
 
-    let selectedCategory = evt.target.value;
+    // let selectedCategory = evt.target.value;
+    selectedCategory = evt.target.value;
+
     if (selectedCategory === 'All categories') {
         selectedCategory = 'All';
     }
-    localStorage.setItem('currentCategory', selectedCategory);
+    // localStorage.setItem('currentCategory', selectedCategory);
 
-    getFavoriteItems(selectedCategory);          // object or only selectedCategory ??????? //
-    renderFavoriteCards(favoriteItemsData.results);
+    let selectedCards = getFavoriteItems(selectedCategory);          // object or only selectedCategory ??????? //
+    renderFavoriteCards(selectedCards.results);
 
 // refs.favoriteCardsList.addEventListener('click', onFavoriteCardClick);          // necessary ????? //
 

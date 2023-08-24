@@ -9,6 +9,8 @@ const refs = {
   refs.links.forEach(function (link) {
     if (link.href === refs.currentUrl) {
       link.classList.add('current');
+      refs.currentHome.classList.remove('current');
+      refs.currentMobileHome.classList.remove('current');
     } else {
       link.classList.remove('current');
     }

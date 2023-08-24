@@ -3,11 +3,21 @@ const { API } = require('@/lib/api');
 import Notiflix from 'notiflix';
 
 const recipesList = document.querySelector('.recipe-cards_wrapper');
+const allCategoriesBtn = document.querySelector('.all-categories-btn');
+const categoriesList = document.querySelector('.categories-list');
+
+allCategoriesBtn.addEventListener('click', getAllCategories);
 
 populateRecipesList();
 
 export async function populateRecipesList(data) {
   try {
+    const activeCategoryItem = categoriesList.querySelector('.is-active');
+    if (activeCategoryItem) {
+      activeCategoryItem.classList.remove('is-active');
+    }
+
+    allCategoriesBtn.classList.add('is-active');
     const recipesData = await API.fetchRecipes(data);
 
     const recipeResult = recipesData.results;
@@ -19,7 +29,7 @@ export async function populateRecipesList(data) {
     recipesList.innerHTML = `<div class="error-msg-title">Oops...</div>
       <div class="error-msg">An error occured, please try to reload the page</div>`;
     recipesList.style.flexDirection = 'column';
-    // recipesList.style.marginTop = '180px';
+    recipesList.classList.add('show-error-msg');
 
     Notiflix.Notify.failure('There was an error while loading the recipes');
 
@@ -139,9 +149,16 @@ timeSelect.addEventListener('change', event => filterByParameter(event, 'time'))
 areaSelect.addEventListener('change', event => filterByParameter(event, 'area'));
 ingredientsSelect.addEventListener('change', event => filterByParameter(event, 'ingredient'));
 resetFiltersBtn.addEventListener('click', resetFilters);
+categoriesList.addEventListener('click', event => {
+  if (event.target.tagName !== 'A') {
+    return;
+  }
+
+  filterByParameter(event, 'category');
+});
 
 renderTimeOptions();
-new SlimSelect({
+let timeSelectSlim = new SlimSelect({
   select: '#time',
   settings: {
     placeholderText: '0 min',
@@ -155,11 +172,10 @@ function renderTimeOptions() {
   }
 
   timeSelect.insertAdjacentHTML('beforeend', elements);
-
-  return elements;
 }
 
 getAreas();
+let areaSelectSlim;
 async function getAreas() {
   try {
     const areasData = await API.fetchAreas();
@@ -168,8 +184,7 @@ async function getAreas() {
     const elements = sortedAreaData.map(element => renderSelectOptions(element._id, element.name)).join('');
 
     areaSelect.insertAdjacentHTML('afterbegin', elements);
-
-    new SlimSelect({
+    areaSelectSlim = new SlimSelect({
       select: '#area',
       settings: {
         placeholderText: 'Region',
@@ -179,7 +194,9 @@ async function getAreas() {
     throw error;
   }
 }
+
 getIngredients();
+let ingredientsSelectSlim;
 async function getIngredients() {
   try {
     const ingredientsData = await API.fetchIngredients();
@@ -188,8 +205,7 @@ async function getIngredients() {
     const elements = sortedIngredientsData.map(element => renderSelectOptions(element._id, element.name)).join('');
 
     ingredientsSelect.insertAdjacentHTML('afterbegin', elements);
-
-    new SlimSelect({
+    ingredientsSelectSlim = new SlimSelect({
       select: '#ingredients',
       settings: {
         placeholderText: 'Product',
@@ -201,6 +217,7 @@ async function getIngredients() {
 }
 
 const selectedFilters = {
+  category: '',
   title: '',
   time: '',
   area: '',
@@ -208,20 +225,31 @@ const selectedFilters = {
 };
 async function filterByParameter(event, parameterName) {
   try {
+    allCategoriesBtn.classList.remove('is-active');
     let selectedValue = '';
+    const targetEl = event.target;
 
-    if (event.target.id === 'area') {
-      selectedValue = event.target.options[event.target.selectedIndex].textContent;
-    } else if (event.target.id === 'ingredients') {
-      selectedValue = event.target.value;
+    if (targetEl.id === 'time') {
+      selectedValue = targetEl.options[targetEl.selectedIndex].dataset.query;
+    } else if (targetEl.id === 'area') {
+      selectedValue = targetEl.options[targetEl.selectedIndex].textContent;
+    } else if (targetEl.id === 'ingredients') {
+      selectedValue = targetEl.options[targetEl.selectedIndex].dataset.query;
+    } else if (targetEl.tagName === 'A') {
+      selectedValue = targetEl.textContent;
+
+      const activeCategoryItem = categoriesList.querySelector('.is-active');
+      if (activeCategoryItem) {
+        activeCategoryItem.classList.remove('is-active');
+      }
+      targetEl.closest('.categorie-items').classList.add('is-active');
     } else {
-      selectedValue = event.target.value.trim();
+      selectedValue = targetEl.value.trim();
     }
 
     selectedFilters[parameterName] = selectedValue;
 
     const response = await API.fetchRecipes(selectedFilters);
-    console.log(response);
     const recipeResults = response.results;
 
     renderFilteredRecipes(recipeResults);
@@ -242,7 +270,7 @@ function renderFilteredRecipes(data) {
 }
 
 function renderSelectOptions(value, name) {
-  return `<option value="${value}">${name}</option>`;
+  return `<option data-query="${value}">${name}</option>`;
 }
 
 function sortByAlphabet(data, key) {
@@ -257,13 +285,48 @@ function showFetchingResult(data) {
   }
 }
 
+function getAllCategories() {
+  populateRecipesList();
+  resetFilters();
+}
+
 function resetFilters() {
   searchInput.value = '';
 
-  // timeSelect.selectedIndex = 0;
-  // areaSelect.selectedIndex = 0;
-  // ingredientsSelect.selectedIndex = 0;
+  timeSelectSlim.destroy();
+  timeSelect.selectedIndex = 0;
+  timeSelectSlim = new SlimSelect({
+    select: '#time',
+    settings: {
+      placeholderText: '0 min',
+    },
+  });
 
+  areaSelectSlim.destroy();
+  if (!areaSelect.firstElementChild.dataset.placeholder) {
+    areaSelect.insertAdjacentHTML('afterbegin', '<option data-placeholder="true"></option>');
+  }
+  areaSelect.selectedIndex = 0;
+  areaSelectSlim = new SlimSelect({
+    select: '#area',
+    settings: {
+      placeholderText: 'Region',
+    },
+  });
+
+  ingredientsSelectSlim.destroy();
+  if (!ingredientsSelect.firstElementChild.dataset.placeholder) {
+    ingredientsSelect.insertAdjacentHTML('afterbegin', '<option data-placeholder="true"></option>');
+  }
+  ingredientsSelect.selectedIndex = 0;
+  ingredientsSelectSlim = new SlimSelect({
+    select: '#ingredients',
+    settings: {
+      placeholderText: 'Product',
+    },
+  });
+
+  selectedFilters.category = '';
   selectedFilters.title = '';
   selectedFilters.time = '';
   selectedFilters.area = '';

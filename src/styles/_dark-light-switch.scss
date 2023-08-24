@@ -12,7 +12,7 @@
     
     color-scheme: light;
 }
-
+// Хедер
 body, 
 .header-logo, 
 .header-link {
@@ -25,6 +25,7 @@ body,
     stroke: var(--primery-text-color);
 }
 
+// Фильтры и пагинация
 .all-categories-btn, 
 .filters p, 
 .search-input, 
@@ -40,7 +41,6 @@ body,
 }
 
 .search-input, 
-// .search-input:focus-visible,!!!!!!!!!!!!!!!!!!!!
 .time-select, 
 .area-select, 
 .ingredients-select{
@@ -95,6 +95,15 @@ p.text,
 .elips, 
 .empty-favorite-list {
     color: var(--primery-text-color);
+}
+
+//Модальное окно с рецептом
+.item-tags-style {
+    color: #050505;
+}
+.modal-card-btn:hover {
+    color: #050505;
+    background-color: #9bb537
 }
 
 

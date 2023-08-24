@@ -125,40 +125,45 @@ import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 import { pagination } from './pagination';
 
+const searchInput = document.querySelector('#searchInput');
+const timeSelect = document.querySelector('#time');
+const areaSelect = document.querySelector('#area');
+const ingredientsSelect = document.querySelector('#ingredients');
+const resetFiltersBtn = document.querySelector('#resetButton');
+
+searchInput.addEventListener(
+  'input',
+  _.debounce(event => filterByParameter(event, 'title'), 300)
+);
+timeSelect.addEventListener('change', event => filterByParameter(event, 'time'));
+areaSelect.addEventListener('change', event => filterByParameter(event, 'area'));
+ingredientsSelect.addEventListener('change', event => filterByParameter(event, 'ingredient'));
+resetFiltersBtn.addEventListener('click', resetFilters);
+
+renderTimeOptions();
 new SlimSelect({
   select: '#time',
   settings: {
     placeholderText: '0 min',
   },
 });
+function renderTimeOptions() {
+  let elements = '';
 
-const searchInput = document.querySelector('#searchInput');
-const timeSelect = document.querySelector('#time');
-const areaSelect = document.querySelector('#area');
-const ingredientsSelect = document.querySelector('#ingredients');
+  for (let i = 5; i <= 120; i += 5) {
+    elements += renderSelectOptions(i, `${i} min`);
+  }
 
-searchInput.addEventListener(
-  'input',
-  _.debounce(event => filterByParameter(event, 'title'), 300)
-);
-areaSelect.addEventListener('change', event => filterByParameter(event, 'area'));
-ingredientsSelect.addEventListener('change', event => filterByParameter(event, 'ingredient'));
+  timeSelect.insertAdjacentHTML('beforeend', elements);
 
-// getTime();
-// async function getTime() {
-//   try {
-//     const recipesData = await API.fetchRecipes();
-//     console.log(recipesData);
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+  return elements;
+}
+
 getAreas();
 async function getAreas() {
   try {
     const areasData = await API.fetchAreas();
     const sortedAreaData = sortByAlphabet(areasData, 'name');
-    // console.log(sortedAreaData);
 
     const elements = sortedAreaData.map(element => renderSelectOptions(element._id, element.name)).join('');
 
@@ -195,6 +200,12 @@ async function getIngredients() {
   }
 }
 
+const selectedFilters = {
+  title: '',
+  time: '',
+  area: '',
+  ingredient: '',
+};
 async function filterByParameter(event, parameterName) {
   try {
     let selectedValue = '';
@@ -206,10 +217,10 @@ async function filterByParameter(event, parameterName) {
     } else {
       selectedValue = event.target.value.trim();
     }
-    console.log(selectedValue);
 
-    const filterOptions = { [parameterName]: selectedValue };
-    const response = await API.fetchRecipes(filterOptions);
+    selectedFilters[parameterName] = selectedValue;
+
+    const response = await API.fetchRecipes(selectedFilters);
     console.log(response);
     const recipeResults = response.results;
 
@@ -246,34 +257,17 @@ function showFetchingResult(data) {
   }
 }
 
-/////////// allFilters ///////////////////////////////////////////
+function resetFilters() {
+  searchInput.value = '';
 
-// const allFilters = document.querySelector('.filters');
-// console.log(allFilters);
+  // timeSelect.selectedIndex = 0;
+  // areaSelect.selectedIndex = 0;
+  // ingredientsSelect.selectedIndex = 0;
 
-// allFilters.addEventListener('change', event => {
-//   console.log(event);
-//   console.log('asasd');
-// });
+  selectedFilters.title = '';
+  selectedFilters.time = '';
+  selectedFilters.area = '';
+  selectedFilters.ingredient = '';
 
-// async function filterAll(event) {
-//   const selectElement = event.target;
-
-//   if (selectElement.tagName !== 'SELECT') {
-//     return;
-//   }
-
-//   const selectedValue = selectElement.value;
-//   const selectedText = selectElement.options[selectElement.selectedIndex].textContent;
-
-//   if (selectElement.id === 'time') {
-//     // id="time"
-//     console.log('idi');
-//   } else if (selectElement.id === 'area') {
-//     // id="area"
-//     console.log('area');
-//   } else if (selectElement.id === 'ingredients') {
-//     // id="ingredients"
-//     console.log('ingredients');
-//   }
-// }
+  populateRecipesList();
+}

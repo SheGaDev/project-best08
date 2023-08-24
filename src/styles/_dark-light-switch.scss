@@ -9,6 +9,7 @@
     --secondary-text-color: #ffffff;
     --filters-background-color:#ffffff;
     --border-color: rgba(5, 5, 5, 0.2);
+    --hero-pic-backround: #050505;
     
     color-scheme: light;
 }
@@ -23,6 +24,25 @@ body,
 .menu-open-btn, 
 .buy-btn {
     stroke: var(--primery-text-color);
+}
+
+// Герой
+.slider_card_dish_introduction,
+.slider_card_dish_view {
+    background-color:  var(--hero-pic-backround);
+}
+
+.swiper-pagination-bullet{
+    opacity: 1;
+    background-color: var(--primery-text-color);
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--accent-color);
+}
+
+.hero_button a {
+    color: var(--primery-text-color);
 }
 
 // Фильтры и пагинация
@@ -57,15 +77,17 @@ body,
     background-color: var( --filters-background-color);
 }
 
+// скролл-бары
+.categories-list::-webkit-scrollbar-thumb,
+.ss-list::-webkit-scrollbar-thumb {
+      background: var(--primery-text-color-transparent-light);
+    }
 
 div.categories-wrapper > div:nth-child(1) > ul > li:nth-child(1) > a {
    color: var(--primery-text-color-transparent);
 
 }
 
-// ::-webkit-scrollbar-thumb {
-//   background-color: #ff9900; /* Change this to your desired color */
-// }
 div.popular-wrapper > ul > li > a > div > p {
     color: var(--primery-text-color-transparent-deep);
 }
@@ -120,6 +142,7 @@ p.text,
     --secondary-text-color: #ffffff; 
     --filters-background-color:#050505;
     --border-color: rgba(255, 255, 255, 0.2);
+    --hero-pic-backround: #161616;
     color-scheme: dark; 
 }
 

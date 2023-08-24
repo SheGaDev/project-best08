@@ -8,6 +8,7 @@
 .backdrop {
   position: fixed;
   background-color: rgba(24, 23, 23, 0.767);
+  // background-image: url(https://pixabay.com/vectors/tesla-model-s-transportation-4244792/);
   top: 0;
   left: 0;
   width: 100vw;
@@ -292,7 +293,7 @@
   width: 18px;
   height: 18px;
 
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
+  @media screen and (min-width: 768px) {
     width: 16px;
     height: 16px;
   }

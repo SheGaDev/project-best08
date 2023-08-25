@@ -4,13 +4,23 @@ const { API } = require('@/lib/api');
 import Notiflix from 'notiflix';
 
 const recipesList = document.querySelector('.recipe-cards_wrapper');
-const cardsWrapper = document.querySelector('.filters-and-cards__wrapper');
+const allCategoriesBtn = document.querySelector('.all-categories-btn');
+const categoriesList = document.querySelector('.categories-list');
+
+allCategoriesBtn.addEventListener('click', getAllCategories);
 
 populateRecipesList();
 
 export async function populateRecipesList(data) {
   try {
+    const activeCategoryItem = categoriesList.querySelector('.is-active');
+    if (activeCategoryItem) {
+      activeCategoryItem.classList.remove('is-active');
+    }
+
+    allCategoriesBtn.classList.add('is-active');
     const recipesData = await API.fetchRecipes(data);
+
     const recipeResult = recipesData.results;
     pagination.setItemsPerPage(recipeResult.length);
     const elements = recipeResult.map(renderRecipeCard);
@@ -23,7 +33,7 @@ export async function populateRecipesList(data) {
     recipesList.innerHTML = `<div class="error-msg-title">Oops...</div>
       <div class="error-msg">An error occured, please try to reload the page</div>`;
     recipesList.style.flexDirection = 'column';
-    // recipesList.style.marginTop = '180px';
+    recipesList.classList.add('show-error-msg');
 
     Notiflix.Notify.failure('There was an error while loading the recipes');
 
@@ -32,7 +42,7 @@ export async function populateRecipesList(data) {
   }
 }
 
-function renderRecipeCard(recipeData) {
+export function renderRecipeCard(recipeData) {
   const recipeCard = document.createElement('li');
   recipeCard.classList.add('recipe-card');
   recipeCard.style.backgroundImage = `linear-gradient(
@@ -125,43 +135,83 @@ function renderRecipeCard(recipeData) {
 
 /////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
+import _ from 'lodash';
+
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 import { pagination } from './pagination';
 
-document.addEventListener('DOMContentLoaded', function () {
-  new SlimSelect({
-    select: '#time',
-    settings: {
-      placeholderText: '0 min',
-    },
-  });
+const searchInput = document.querySelector('#searchInput');
+const timeSelect = document.querySelector('#time');
+const areaSelect = document.querySelector('#area');
+const ingredientsSelect = document.querySelector('#ingredients');
+const resetFiltersBtn = document.querySelector('#resetButton');
 
-  new SlimSelect({
-    select: '#area',
-    settings: {
-      placeholderText: 'Region',
-    },
-  });
+searchInput.addEventListener(
+  'input',
+  _.debounce(event => filterByParameter(event, 'title'), 300)
+);
+timeSelect.addEventListener('change', event => filterByParameter(event, 'time'));
+areaSelect.addEventListener('change', event => filterByParameter(event, 'area'));
+ingredientsSelect.addEventListener('change', event => filterByParameter(event, 'ingredient'));
+resetFiltersBtn.addEventListener('click', resetFilters);
+categoriesList.addEventListener('click', event => {
+  if (event.target.tagName !== 'A') {
+    return;
+  }
+
+  filterByParameter(event, 'category');
 });
 
-const ingredientsSelect = document.querySelector('#ingredients');
+renderTimeOptions();
+let timeSelectSlim = new SlimSelect({
+  select: '#time',
+  settings: {
+    placeholderText: '0 min',
+  },
+});
+function renderTimeOptions() {
+  let elements = '';
+
+  for (let i = 5; i <= 120; i += 5) {
+    elements += renderSelectOptions(i, `${i} min`);
+  }
+
+  timeSelect.insertAdjacentHTML('beforeend', elements);
+}
+
+getAreas();
+let areaSelectSlim;
+async function getAreas() {
+  try {
+    const areasData = await API.fetchAreas();
+    const sortedAreaData = sortByAlphabet(areasData, 'name');
+
+    const elements = sortedAreaData.map(element => renderSelectOptions(element._id, element.name)).join('');
+
+    areaSelect.insertAdjacentHTML('afterbegin', elements);
+    areaSelectSlim = new SlimSelect({
+      select: '#area',
+      settings: {
+        placeholderText: 'Region',
+      },
+    });
+  } catch (error) {
+    throw error;
+  }
+}
 
 getIngredients();
-
+let ingredientsSelectSlim;
 async function getIngredients() {
   try {
     const ingredientsData = await API.fetchIngredients();
+    const sortedIngredientsData = sortByAlphabet(ingredientsData, 'name');
 
-    const sortedIngredientsData = ingredientsData.sort((a, b) => a.name.localeCompare(b.name));
-
-    console.log(sortedIngredientsData);
-
-    const elements = sortedIngredientsData.map(renderIngredientsSelectOptions).join('');
+    const elements = sortedIngredientsData.map(element => renderSelectOptions(element._id, element.name)).join('');
 
     ingredientsSelect.insertAdjacentHTML('afterbegin', elements);
-
-    new SlimSelect({
+    ingredientsSelectSlim = new SlimSelect({
       select: '#ingredients',
       settings: {
         placeholderText: 'Product',
@@ -172,13 +222,121 @@ async function getIngredients() {
   }
 }
 
-function renderIngredientsSelectOptions(ingredient) {
-  return `<option value="${ingredient.name}">${ingredient.name}</option>`;
+const selectedFilters = {
+  category: '',
+  title: '',
+  time: '',
+  area: '',
+  ingredient: '',
+};
+async function filterByParameter(event, parameterName) {
+  try {
+    allCategoriesBtn.classList.remove('is-active');
+    let selectedValue = '';
+    const targetEl = event.target;
+
+    if (targetEl.id === 'time') {
+      selectedValue = targetEl.options[targetEl.selectedIndex].dataset.query;
+    } else if (targetEl.id === 'area') {
+      selectedValue = targetEl.options[targetEl.selectedIndex].textContent;
+    } else if (targetEl.id === 'ingredients') {
+      selectedValue = targetEl.options[targetEl.selectedIndex].dataset.query;
+    } else if (targetEl.tagName === 'A') {
+      selectedValue = targetEl.textContent;
+
+      const activeCategoryItem = categoriesList.querySelector('.is-active');
+      if (activeCategoryItem) {
+        activeCategoryItem.classList.remove('is-active');
+      }
+      targetEl.closest('.categorie-items').classList.add('is-active');
+    } else {
+      selectedValue = targetEl.value.trim();
+    }
+
+    selectedFilters[parameterName] = selectedValue;
+
+    const response = await API.fetchRecipes(selectedFilters);
+    const recipeResults = response.results;
+
+    renderFilteredRecipes(recipeResults);
+
+    showFetchingResult(recipeResults);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+
+    Notiflix.Notify.failure('Invalid input. Please try another one!');
+    throw error;
+  }
 }
 
-// const timeSelect = document.querySelector('#time');
-// console.log(timeSelect);
+function renderFilteredRecipes(data) {
+  const elements = data.map(renderRecipeCard);
+  recipesList.innerHTML = '';
+  recipesList.append(...elements);
+}
 
-// timeSelect.addEventListener('change', event => {
-//   console.log(event.target.value);
-// });
+function renderSelectOptions(value, name) {
+  return `<option data-query="${value}">${name}</option>`;
+}
+
+function sortByAlphabet(data, key) {
+  return data.sort((a, b) => a[key].localeCompare(b[key]));
+}
+
+function showFetchingResult(data) {
+  if (data.length === 0) {
+    Notiflix.Notify.failure('No matcher were found');
+  } else {
+    Notiflix.Notify.success(`We found ${data.length} matches!`);
+  }
+}
+
+function getAllCategories() {
+  populateRecipesList();
+  resetFilters();
+}
+
+function resetFilters() {
+  searchInput.value = '';
+
+  timeSelectSlim.destroy();
+  timeSelect.selectedIndex = 0;
+  timeSelectSlim = new SlimSelect({
+    select: '#time',
+    settings: {
+      placeholderText: '0 min',
+    },
+  });
+
+  areaSelectSlim.destroy();
+  if (!areaSelect.firstElementChild.dataset.placeholder) {
+    areaSelect.insertAdjacentHTML('afterbegin', '<option data-placeholder="true"></option>');
+  }
+  areaSelect.selectedIndex = 0;
+  areaSelectSlim = new SlimSelect({
+    select: '#area',
+    settings: {
+      placeholderText: 'Region',
+    },
+  });
+
+  ingredientsSelectSlim.destroy();
+  if (!ingredientsSelect.firstElementChild.dataset.placeholder) {
+    ingredientsSelect.insertAdjacentHTML('afterbegin', '<option data-placeholder="true"></option>');
+  }
+  ingredientsSelect.selectedIndex = 0;
+  ingredientsSelectSlim = new SlimSelect({
+    select: '#ingredients',
+    settings: {
+      placeholderText: 'Product',
+    },
+  });
+
+  selectedFilters.category = '';
+  selectedFilters.title = '';
+  selectedFilters.time = '';
+  selectedFilters.area = '';
+  selectedFilters.ingredient = '';
+
+  populateRecipesList();
+}

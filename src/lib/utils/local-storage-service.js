@@ -53,7 +53,7 @@ function getFavoriteItems(options = {}) {
     const categories = getCategories(items);
     const perPage = 12;
     const totalPages = Math.ceil(filtered.length / perPage);
-    if(totalPages < options.page) options.page = 1;
+    if (totalPages < options.page) options.page = 1;
     const data = {
         page: options.page,
         totalPages,
@@ -113,5 +113,7 @@ export {
     asyncToggleFavoriteItem,
     toggleFavoriteItem,
     getFavoriteItems,
-    getFavoriteItem
+    getFavoriteItem,
+    getCategories,
+    getStorageFavorites
 }

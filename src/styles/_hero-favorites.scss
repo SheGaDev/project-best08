@@ -13,6 +13,11 @@
   justify-content: center;
 }
 
+.hero-favorites-img{
+  border-radius: 18px;
+  overflow: hidden;
+}
+
 @media screen and (max-width: 767px) {
   .hero-favorites-section.unvisible {
     opacity: 0;

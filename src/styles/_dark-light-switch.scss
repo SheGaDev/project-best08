@@ -27,9 +27,8 @@ body,
 }
 
 // Герой
-.slider_card_dish_introduction,
-.slider_card_dish_view {
-    background-color:  var(--hero-pic-backround);
+.slider_card_dish_introduction {
+   background-image: url(../images/Ellipse-min.svg);
 }
 
 .swiper-pagination-bullet{

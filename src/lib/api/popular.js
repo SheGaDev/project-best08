@@ -11,3 +11,5 @@ export async function popularRendering() {
   const recipeClick = document.querySelector('.popular-list');
   recipeClick.addEventListener('click', onClickOpenRecipeModal);
 }
+
+popularRendering()

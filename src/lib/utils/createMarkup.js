@@ -7,7 +7,7 @@ export function createMarkup(data) {
     .map(
       ({ title, preview, description, _id }) => `
   <li class="popular-item">
-      <a href="#" recipe-id="${_id}">
+      <a href="" recipe-id="${_id}">
       <img src="${preview}" class="popular-img"/>
     <div class="popular-text-wrapper">
       <h3>${title}</h3>

@@ -1,9 +1,10 @@
-import { pagination } from './pagination';
+import { MakePagination } from './pagination';
 import { onClickOpenRecipeModal } from './modal-card';
 const { API } = require('@/lib/api');
 import Notiflix from 'notiflix';
 
-const recipesList = document.querySelector('.recipe-cards_wrapper');
+const pag = new MakePagination();
+export const recipesList = document.querySelector('.recipe-cards_wrapper');
 const allCategoriesBtn = document.querySelector('.all-categories-btn');
 const categoriesList = document.querySelector('.categories-list');
 
@@ -20,15 +21,18 @@ export async function populateRecipesList(data) {
 
     allCategoriesBtn.classList.add('is-active');
     const recipesData = await API.fetchRecipes(data);
-
+    pag._itemsPerPage = recipesData.perPage;
+    pag._totalItems = recipesData.totalPages;
     const recipeResult = recipesData.results;
-    pagination.setItemsPerPage(recipeResult.length);
     const elements = recipeResult.map(renderRecipeCard);
     recipesList.innerHTML = '';
     recipesList.append(...elements);
     //add Listener for open modal recipe window
     const recipeClick = document.querySelector('.recipe-cards_wrapper');
     recipeClick.addEventListener('click', onClickOpenRecipeModal);
+    pag.createPag().on('beforeMove', e => {
+      pag.renderCategories(e);
+    });
   } catch (error) {
     recipesList.innerHTML = `<div class="error-msg-title">Oops...</div>
       <div class="error-msg">An error occured, please try to reload the page</div>`;
@@ -156,6 +160,7 @@ areaSelect.addEventListener('change', event => filterByParameter(event, 'area'))
 ingredientsSelect.addEventListener('change', event => filterByParameter(event, 'ingredient'));
 resetFiltersBtn.addEventListener('click', resetFilters);
 categoriesList.addEventListener('click', event => {
+  event.preventDefault();
   if (event.target.tagName !== 'A') {
     return;
   }
@@ -254,12 +259,15 @@ async function filterByParameter(event, parameterName) {
     }
 
     selectedFilters[parameterName] = selectedValue;
-
     const response = await API.fetchRecipes(selectedFilters);
+    pag._itemsPerPage = response.perPage;
+    pag._totalItems = response.totalPages;
+    pag.createPag().on('beforeMove', e => {
+      pag.renderCategories({ ...selectedFilters, ...e });
+    });
+
     const recipeResults = response.results;
-
     renderFilteredRecipes(recipeResults);
-
     showFetchingResult(recipeResults);
   } catch (error) {
     console.error('Error fetching data:', error);

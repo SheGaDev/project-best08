@@ -122,24 +122,24 @@ div.categories-wrapper > div.popular-wrapper > ul > li> a > div,
     color: var(--primery-text-color);
 }
 
-//Модальное окно с рецептом
+//Модальное окно с рецептом и order now
 .modal-recipe-container,
-.close-button {
+.close-button,
+.order-now-box,
+.close-modal {
     background-color: var(--filters-background-color);
 }
-.modal-card-name,
-.close-button {
+.modal-card-name{
     color: var(--primery-text-color)
 }
-.close-button{
-    stroke: var(--hero-pic-backround);
-}
+
 .item-tags-style,
 .ingredients-name  {
     color: var(--primery-text-color);
 }
 .ingredients-measure,
-.modal-card-rating-value {
+.modal-card-rating-value,
+.order-label {
     color: var(--primery-text-color-transparent-dark);
 }
 
@@ -147,7 +147,8 @@ div.categories-wrapper > div.popular-wrapper > ul > li> a > div,
     border-bottom-color: var(--primery-text-color-transparent);
 }
 
-.item-tags-style {
+.item-tags-style,
+.order-input {
     border-color: var(--border-color);
 }
 .star {
@@ -161,6 +162,12 @@ fill: var( --border-color);
 .modal-card-btn:hover {
     color: #050505;
     background-color: #9bb537
+}
+
+.order-input {
+    color: var(--primery-text-color);
+    border-color: var(--border-color);
+    background: transparent;
 }
 
 

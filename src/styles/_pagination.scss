@@ -121,6 +121,9 @@
 }
 
 @media screen and (max-width: 767px) {
+  .pag-container{
+    padding-bottom: 80px;
+  }
   .tui-pagination .tui-page-btn {
     width: 40px;
     height: 40px;
@@ -139,9 +142,13 @@
   .tui-prev {
     margin-right: 14px;
   }
+
 }
 
 @media screen and (min-width: 768px) {
+  .pag-container{
+    padding-bottom: 100px;
+  }
   .margin-class,
   .tui-page-btn.tui-prev-is-ellip {
     margin-right: 10px;

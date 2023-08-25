@@ -1,32 +1,32 @@
-@use "./globals";
+@use './globals';
 
 .is-hidden {
-    display: none;
+  display: none;
 }
 
 .hero-favorites-section {
-    padding-top: 23.5px;
+  padding-top: 23.5px;
 }
 
 .hero-favorites-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (max-width: 767px) {
-    .hero-favorites-section.unvisible {
-        opacity: 0;
-    }
+  .hero-favorites-section.unvisible {
+    opacity: 0;
+  }
 }
 
 @media screen and (min-width: 768px) {
-    .hero-favorites-section {
-        padding-top: 22px;
-    }
+  .hero-favorites-section {
+    padding-top: 22px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-    .hero-favorites-section {
-        padding-top: 0;
-    }
+  .hero-favorites-section {
+    padding-top: 0;
+  }
 }

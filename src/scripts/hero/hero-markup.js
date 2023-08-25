@@ -1,5 +1,5 @@
 export function createMarkup(arr) {
-    const markup = arr.map(({ cook:{imgWebpUrl}, topic:{name, area, previewWebpUrl,imgUrl},_id }) => 
+    const markup = arr.map(({ cook: { imgWebpUrl }, topic: { name, area, previewWebpUrl, imgUrl }, _id }) =>
         `<div class="swiper-slide" id="${_id}">
 
         <div class="slider_card_cheef">

@@ -86,12 +86,12 @@
     border-color: globals.$accent-color;
   }
 
-  &:not(:placeholder-shown):valid {
-    border-color: globals.$accent-color;
-  }
-  &:not(:placeholder-shown):invalid {
-    border-color: #ff0000;
-  }
+  // &:not(:placeholder-shown):valid {
+  //   border-color: globals.$accent-color;
+  // }
+  // &:not(:placeholder-shown):invalid {
+  //   border-color: #ff0000;
+  // }
 }
 
 .order-comment {

@@ -1,0 +1,197 @@
+:root{
+    --primery-background-color: #f8f8f8;
+    --primery-text-color:#050505;
+    --primery-text-color-transparent-deep:rgba(5, 5, 5, 0.8);
+    --primery-text-color-transparent-dark: rgba(5, 5, 5, 0.5);
+    --primery-text-color-transparent: rgba(5, 5, 5, 0.3);
+    --primery-text-color-transparent-light: rgba(5, 5, 5, 0.18);
+    --accent-color: #9bb537;
+    --secondary-text-color: #ffffff;
+    --filters-background-color:#ffffff;
+    --border-color: rgba(5, 5, 5, 0.2);
+    --hero-pic-backround: #050505;
+    
+    color-scheme: light;
+}
+// Хедер
+body, 
+.header-logo, 
+.header-link {
+    background-color: var(--primery-background-color);
+    color: var(--primery-text-color);
+}
+
+.menu-open-btn, 
+.buy-btn {
+    stroke: var(--primery-text-color);
+}
+
+// Герой
+.slider_card_dish_introduction,
+.slider_card_dish_view {
+    background-color:  var(--hero-pic-backround);
+}
+
+.swiper-pagination-bullet{
+    opacity: 1;
+    background-color: var(--primery-text-color);
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--accent-color);
+}
+
+.hero_button a {
+    color: var(--primery-text-color);
+}
+
+// Фильтры и пагинация
+.all-categories-btn, 
+.filters p, 
+.search-input, 
+.search-input::placeholder {
+    color: var( --primery-text-color-transparent-dark);
+    border-color: var(--border-color);
+    background: transparent;
+}
+
+.search-input:focus-visible {
+    outline-color: var(--border-color);
+    outline-width: 1px;
+}
+
+.search-input, 
+.time-select, 
+.area-select, 
+.ingredients-select{
+    color: var( --primery-text-color-transparent-dark);
+    border-color: var(--border-color);
+    background: transparent;
+  
+    &.ss-main .ss-values .ss-placeholder {
+        color: var( --primery-text-color-transparent-dark);
+
+    }
+}
+.ss-content.ss-open-below,
+.ss-content.ss-open-above{
+    background-color: var( --filters-background-color);
+}
+
+// скролл-бары
+.categories-list::-webkit-scrollbar-thumb,
+.ss-list::-webkit-scrollbar-thumb {
+      background: var(--primery-text-color-transparent-light);
+    }
+
+div.categories-wrapper > div> ul > li > a {
+   color: var(--primery-text-color-transparent);
+}
+
+div.popular-wrapper > ul > li > a > div > p {
+    color: var(--primery-text-color-transparent-deep);
+}
+
+.tui-pagination .tui-page-btn {
+    border-color: var(--border-color); 
+}
+
+.categorie-items, 
+.area-select.ss-main, 
+.ss-placeholder, 
+.ss-content .ss-list .ss-option {
+    color: var(--primery-text-color-transparent);
+}
+
+.search-input-button .search-icon{
+    fill: var(--primery-text-color);
+}
+.reset-button{
+    color: var( --primery-text-color-transparent-dark);
+}
+
+.search-input,
+.ss-values, 
+.ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected,
+.ss-content .ss-list .ss-option:hover,
+p.text, 
+.elips, 
+.empty-favorite-list,
+div.categories-wrapper > div.popular-wrapper > ul > li> a > div, 
+.reset-button:hover {
+    color: var(--primery-text-color);
+}
+
+//Модальное окно с рецептом и order now
+.modal-recipe-container,
+.close-button,
+.order-now-box,
+.close-modal {
+    background-color: var(--filters-background-color);
+}
+.modal-card-name{
+    color: var(--primery-text-color)
+}
+
+.item-tags-style,
+.ingredients-name  {
+    color: var(--primery-text-color);
+}
+.ingredients-measure,
+.modal-card-rating-value,
+.order-label {
+    color: var(--primery-text-color-transparent-dark);
+}
+
+.modal-card-ingredients-item {
+    border-bottom-color: var(--primery-text-color-transparent);
+}
+
+.item-tags-style,
+.order-input {
+    border-color: var(--border-color);
+}
+.star {
+fill: var( --border-color);
+
+}
+.modal-card-about-descr {
+    color: var(--primery-text-color-transparent-deep);
+}
+
+.modal-card-btn:hover {
+    color: #050505;
+    background-color: #9bb537
+}
+
+.order-input {
+    color: var(--primery-text-color);
+    border-color: var(--border-color);
+    background: transparent;
+}
+
+
+// Dark
+
+.dark{
+    --primery-background-color: #161616;
+    --primery-text-color: #fff;
+    --primery-text-color-transparent-deep:rgba(255, 255, 255, 0.8);
+    --primery-text-color-transparent-dark: rgba(255, 255, 255, 0.5); 
+    --primery-text-color-transparent: rgba(255, 255, 255, 0.3);
+    --primery-text-color-transparent-light: rgba(255, 255, 255, 0.18);
+    --accent-color: #9bb537;
+    --secondary-text-color: #ffffff; 
+    --filters-background-color:#050505;
+    --border-color: rgba(255, 255, 255, 0.2);
+    --hero-pic-backround: #161616;
+    color-scheme: dark; 
+}
+
+.current {
+    color: var(--accent-color);
+    @media screen and (max-width: 768px) {
+      font-weight: 500;
+      color: var(--secondary-text-color);
+    }
+  }

@@ -6,6 +6,10 @@
   overflow: hidden;
 }
 
+.hideBtn {
+  display: none;
+}
+
 .header-navigation {
   display: flex;
   justify-content: space-between;
@@ -266,7 +270,7 @@ input:checked + .slider:before {
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
   .logo {
     padding: 40px 0;
   }

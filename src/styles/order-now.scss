@@ -107,23 +107,29 @@
   border: none;
   color: $primery-background-color;
   margin-top: 40px;
+  transition: color globals.$typical-transition;
+  &:hover {
+    color: globals.$primery-text-color;
+  }
 }
 
 .close-modal {
   position: absolute;
   top: 16px;
   right: 16px;
+  padding: 2px;
   width: 24px;
   height: 24px;
   background-color: $secondary-text-color;
   border: none;
   border-radius: 50%;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><g stroke="%23050505" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></g></svg>');
+  // background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><g stroke="%23050505" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></g></svg>');
   transition: background-color globals.$typical-transition;
   &:hover {
     background-color: globals.$accent-color;
   }
 }
+
 
 @media screen and (max-width: 768px) {
   .order-now-box {

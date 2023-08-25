@@ -1,21 +1,21 @@
 .to_top {
-    position: fixed;
-    bottom: 40px;
-    right: 25px;
-    z-index: 1001;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    width: 43px;
-    height: 43px;
-    border-radius: 50%;
-    border: 1px solid #9BB537;
-    background: white;
-    opacity: 0.3;
-    transition: background, opacity, 0.5s;
-    &:hover{
-      background-color: #9BB537;
-      opacity: 0.8;
-    }
-    }
+  position: fixed;
+  bottom: 40px;
+  right: 25px;
+  z-index: 1001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  border: 1px solid #9bb537;
+  background: white;
+  opacity: 0.3;
+  transition: background, opacity, 0.5s;
+  &:hover {
+    background-color: #9bb537;
+    opacity: 0.8;
+  }
+}

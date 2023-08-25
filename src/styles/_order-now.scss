@@ -1,0 +1,153 @@
+@use './globals';
+
+.order-now.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0000004d;
+}
+.inputs-styles {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 18px;
+}
+.order-now-box {
+  position: absolute;
+  background-color: globals.$secondary-text-color;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  width: 440px;
+  border-radius: 15px;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+  transition: opacity 1s linear;
+}
+
+.order-now-title {
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.order-now-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.order-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  color: rgba(5, 5, 5, 0.5);
+  font-size: 14px;
+}
+.order-input {
+  resize: none;
+  border-radius: 15px;
+  border: 1px solid rgba(5, 5, 5, 0.2);
+  width: 100%;
+  height: 48px;
+  padding: 10px 10px;
+  transition-property: outline;
+  outline: none;
+  overflow: auto;
+  transition: border globals.$typical-transition;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+  &::placeholder {
+    color: transparent;
+  }
+  &:focus {
+    border-color: globals.$accent-color;
+  }
+
+  &:not(:placeholder-shown):valid {
+    border-color: globals.$accent-color;
+  }
+  &:not(:placeholder-shown):invalid {
+    border-color: #ff0000;
+  }
+}
+
+.order-comment {
+  width: 100%;
+  height: 100px;
+}
+
+.now-form-btn {
+  width: 100%;
+  border-radius: 15px;
+  background: $accent-color;
+  padding: 14px;
+  border: none;
+  color: $primery-background-color;
+  margin-top: 40px;
+  transition: color globals.$typical-transition;
+  &:hover {
+    color: globals.$primery-text-color;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 2px;
+  width: 24px;
+  height: 24px;
+  background-color: $secondary-text-color;
+  border: none;
+  border-radius: 50%;
+  // background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><g stroke="%23050505" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></g></svg>');
+  transition: background-color globals.$typical-transition;
+  &:hover {
+    background-color: globals.$accent-color;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .order-now-box {
+    max-width: 335px;
+    padding: 28px 20px;
+  }
+  .inputs-styles {
+    gap: 16px;
+  }
+  .order-input {
+    height: 46px;
+  }
+  .order-now-title{
+    margin-bottom: 28px;
+  }
+}
+@media screen and (max-width: 340px) {
+  .order-now-box {
+    max-width: 95svw;
+  }
+}

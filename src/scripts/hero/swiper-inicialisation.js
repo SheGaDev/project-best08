@@ -1,26 +1,25 @@
-
 import Swiper from 'swiper';
-import  { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
 import 'swiper/swiper.min.css';
 
 // Swiper.use([Navigation, Pagination, Scrollbar, Autoplay]);
 
 export const initSwiper = () => {
     const swiper = new Swiper('.swiper', {
-     modules: [Navigation, Pagination, Scrollbar, Autoplay],
+        modules: [Navigation, Pagination, Scrollbar, Autoplay],
         autoplay: {
             delay: 4000,
             disableOnInteraction: true,
-            stopOnLastSlide:false,
-           
-        }, 
+            stopOnLastSlide: false,
+
+        },
 
         slidesPerView: 1,
-      spaceBetween: 10,
-      loop: false,
-        pagination:{
-el:'.swiper-pagination',
-clickable:true,
+        spaceBetween: 10,
+        loop: false,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
 
 
         },
@@ -33,6 +32,5 @@ clickable:true,
         simulateTouch: false,
         speed: 600
     });
+
 }
-
-

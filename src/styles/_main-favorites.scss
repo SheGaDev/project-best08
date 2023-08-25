@@ -71,6 +71,7 @@
   border-radius: 15px;
   color: rgba(5, 5, 5, 0.3);
   background-color: globals.$secondary-text-color;
+  transition: color $typical-transition, background-color $typical-transition;
 }
 
 .favorite-categories-btn:hover,

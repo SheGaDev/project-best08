@@ -7,3 +7,5 @@ export async function categoriesRendering() {
   const markup = createLi(data);
   refs.categoriesEl.innerHTML = markup;
 }
+
+categoriesRendering()
